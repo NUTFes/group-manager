@@ -44,15 +44,12 @@ group :development, :test do
 
   # rails consoleをリッチにする
   # http://ruby-rails.hatenadiary.com/entry/20141024/1414081224
-  gem 'pry-rails'   # rails consoleでpryを使う 
+  gem 'pry-rails'   # rails consoleでpryを使う
   gem 'pry-doc'     # methodを表示
   gem 'pry-byebug'  # デバッグを実施
   gem 'pry-stack_explorer' # スタックをたどれる
-
-  # ActiveRecordを読みやすくする
-  gem 'hirb'
-  gem 'hirb-unicode'
 end
+
 
 # 認証, パスワード暗号化, 再発行
 gem 'devise'
@@ -74,4 +71,5 @@ gem 'twitter-bootstrap-rails'
 # heroku監視
 gem 'newrelic_rpm'
 
-
+# for e-mail validate
+gem 'validates_email_format_of'
