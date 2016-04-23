@@ -8,8 +8,11 @@
 /.bundle
 /vendor/bundle/
 
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
 
+config/initializers/devise.rb
+vendor/bundle
