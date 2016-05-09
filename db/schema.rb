@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329141621) do
+ActiveRecord::Schema.define(version: 20160509122328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,11 +135,13 @@ ActiveRecord::Schema.define(version: 20160329141621) do
   end
 
   create_table "power_orders", force: :cascade do |t|
-    t.integer  "group_id",   null: false
-    t.string   "item",       null: false
+    t.integer  "group_id",     null: false
+    t.string   "item",         null: false
     t.integer  "power"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "manufacturer", null: false
+    t.string   "model",        null: false
   end
 
   add_index "power_orders", ["group_id"], name: "index_power_orders_on_group_id", using: :btree
@@ -180,10 +182,11 @@ ActiveRecord::Schema.define(version: 20160329141621) do
   add_index "rental_item_allow_lists", ["rental_item_id"], name: "index_rental_item_allow_lists_on_rental_item_id", using: :btree
 
   create_table "rental_items", force: :cascade do |t|
-    t.string   "name_ja",    null: false
+    t.string   "name_ja",                    null: false
     t.string   "name_en"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_rentable", default: true, null: false
   end
 
   create_table "rental_orders", force: :cascade do |t|
@@ -223,6 +226,19 @@ ActiveRecord::Schema.define(version: 20160329141621) do
     t.boolean  "is_closed_holiday", default: false
   end
 
+  create_table "stage_common_options", force: :cascade do |t|
+    t.integer  "group_id",          null: false
+    t.boolean  "own_equipment"
+    t.boolean  "bgm"
+    t.boolean  "camera_permittion"
+    t.boolean  "loud_sound"
+    t.text     "stage_content",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "stage_common_options", ["group_id"], name: "index_stage_common_options_on_group_id", using: :btree
+
   create_table "stage_orders", force: :cascade do |t|
     t.integer  "group_id"
     t.boolean  "is_sunny"
@@ -230,12 +246,8 @@ ActiveRecord::Schema.define(version: 20160329141621) do
     t.integer  "stage_first"
     t.integer  "stage_second"
     t.string   "time"
-    t.boolean  "own_equipment"
-    t.boolean  "bgm"
-    t.boolean  "camera_permittion"
-    t.boolean  "loud_sound"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "stage_orders", ["fes_date_id"], name: "index_stage_orders_on_fes_date_id", using: :btree
@@ -346,6 +358,7 @@ ActiveRecord::Schema.define(version: 20160329141621) do
   add_foreign_key "rental_item_allow_lists", "rental_items"
   add_foreign_key "rental_orders", "groups"
   add_foreign_key "rental_orders", "rental_items"
+  add_foreign_key "stage_common_options", "groups"
   add_foreign_key "stage_orders", "fes_dates"
   add_foreign_key "stage_orders", "groups"
   add_foreign_key "stocker_items", "fes_years"
