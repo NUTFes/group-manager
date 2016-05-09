@@ -12,4 +12,8 @@ Place.seed( :id,
   { id: 9  , name_ja: '電気棟208'    , is_outside: false } ,
   { id: 10 , name_ja: '電気棟212'    , is_outside: false } ,
   { id: 11 , name_ja: '電気棟310'    , is_outside: false } ,
+  { id: 12 , name_ja: '講義棟部屋A'  , is_outside: false } ,
+  { id: 13 , name_ja: '講義棟部屋B'  , is_outside: false } ,
+  { id: 14 , name_ja: 'マルチメディアセンター'  , is_outside: false } ,
+  { id: 15 , name_ja: 'グラウンド'   , is_outside: true }
 )

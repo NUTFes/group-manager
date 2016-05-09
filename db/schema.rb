@@ -115,6 +115,13 @@ ActiveRecord::Schema.define(version: 20160509122328) do
   add_index "groups", ["group_category_id"], name: "index_groups_on_group_category_id", using: :btree
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
+  create_table "place_decisions", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "place_decision_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "place_orders", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "first"
