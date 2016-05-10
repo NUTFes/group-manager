@@ -47,6 +47,7 @@ class Ability
       cannot [:destroy], Place # PlaceOrderからfindで引いている．削除は禁止
       cannot [:destroy], Shop, :id => [*(1..23)]  # Shopは1-23のデフォルトの削除禁止
       cannot [:create, :update, :destroy], StockerPlace # 貸出場所は編集不可
+      cannot [:create,:destroy], PlaceAllowList #場所の許可に関して編集不可
     end
     if user.role_id == 3 then # for user (デフォルトのrole)
       can :manage, :welcome

@@ -1,6 +1,12 @@
 ActiveAdmin.register PlaceAllowList do
 
-  permit_params :enable,:group_category_id,:place
+  # permit_params :enable,:group_category_id,:place
+
+  permit_params do 
+    params = [:enable] 
+    params.concat [:group_category_id, :place] if current_user.role_id==1
+    params
+  end
 
   index do
     id_column
@@ -15,6 +21,10 @@ ActiveAdmin.register PlaceAllowList do
 
   form do |f|
     inputs '場所を許可/不許可' do
+      if current_user.role_id==1 then
+        input :group_category
+        input :place
+      end
       input :enable
     end
     f.actions
