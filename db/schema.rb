@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510084512) do
+ActiveRecord::Schema.define(version: 20160510110533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,7 +147,6 @@ ActiveRecord::Schema.define(version: 20160510084512) do
   create_table "places", force: :cascade do |t|
     t.string   "name_ja"
     t.string   "name_en"
-    t.boolean  "is_outside"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
