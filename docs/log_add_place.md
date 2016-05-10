@@ -80,7 +80,6 @@ $ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=place.rb
 ```
 # 団体カテゴリと場所の関連を追加
 $ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=place_allow_list.rb
-
 == Filtering seed files against regexp: /place_allow_list.rb/
 
 == Seed from db/fixtures/place_allow_list.rb
@@ -135,11 +134,11 @@ $ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=place_allow_list.r
 - PlaceAllowList {:id=>49, :place_id=>4, :group_category_id=>5, :enable=>true}
 - PlaceAllowList {:id=>50, :place_id=>5, :group_category_id=>5, :enable=>true}
 - PlaceAllowList {:id=>51, :place_id=>6, :group_category_id=>5, :enable=>true}
-- PlaceAllowList {:id=>52, :place_id=>7, :group_category_id=>5, :enable=>true}
-- PlaceAllowList {:id=>53, :place_id=>8, :group_category_id=>5, :enable=>true}
-- PlaceAllowList {:id=>54, :place_id=>9, :group_category_id=>5, :enable=>true}
-- PlaceAllowList {:id=>55, :place_id=>10, :group_category_id=>5, :enable=>true}
-- PlaceAllowList {:id=>56, :place_id=>11, :group_category_id=>5, :enable=>true}
+- PlaceAllowList {:id=>52, :place_id=>7, :group_category_id=>5, :enable=>false}
+- PlaceAllowList {:id=>53, :place_id=>8, :group_category_id=>5, :enable=>false}
+- PlaceAllowList {:id=>54, :place_id=>9, :group_category_id=>5, :enable=>false}
+- PlaceAllowList {:id=>55, :place_id=>10, :group_category_id=>5, :enable=>false}
+- PlaceAllowList {:id=>56, :place_id=>11, :group_category_id=>5, :enable=>false}
 - PlaceAllowList {:id=>57, :place_id=>12, :group_category_id=>5, :enable=>true}
 - PlaceAllowList {:id=>58, :place_id=>13, :group_category_id=>5, :enable=>true}
 - PlaceAllowList {:id=>59, :place_id=>14, :group_category_id=>5, :enable=>true}
@@ -147,8 +146,7 @@ $ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=place_allow_list.r
 ```
 
 ```
-# ステージにEnable項目を追加
-$ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=stage.rb
+# stageテーブルにEnableカラムを追加
 $ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=stage.rb
 
 == Filtering seed files against regexp: /stage.rb/
@@ -157,9 +155,76 @@ $ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=stage.rb
 - Stage {:id=>1, :name_ja=>"メインステージ", :is_sunny=>true, :enable=>true}
 - Stage {:id=>2, :name_ja=>"サブステージ", :is_sunny=>true, :enable=>true}
 - Stage {:id=>3, :name_ja=>"体育館", :is_sunny=>true, :enable=>true}
-- Stage {:id=>4, :name_ja=>"マルチメディアセンター", :is_sunny=>true, :enable=>false}
+- Stage {:id=>4, :name_ja=>"マルチメディアセンター", :is_sunny=>true, :enable=>true}
 - Stage {:id=>5, :name_ja=>"体育館", :is_sunny=>false, :enable=>true}
-- Stage {:id=>6, :name_ja=>"マルチメディアセンター", :is_sunny=>false, :enable=>false}
+- Stage {:id=>6, :name_ja=>"マルチメディアセンター", :is_sunny=>false, :enable=>true}
 - Stage {:id=>7, :name_ja=>"武道館", :is_sunny=>false, :enable=>true}
+- Stage {:id=>8, :name_ja=>"武道館", :is_sunny=>true, :enable=>true}
 ```
+
+## 実施場所の申請フォームの選択肢を修正
+ * ``app/models/place.rb``で, 場所について``PlaceAllowListテーブル``を参照するように変更.
+ * ``is_outside``カラムを廃止
+
+## Placeテーブルからis_outside項目を削除
+```
+# is_outside項目を削除
+$ bundle exec rails g migration RemoveIsOutsideFromPlace is_outside:boolean
+Running via Spring preloader in process 48665
+    invoke  active_record
+  create    db/migrate/20160510110533_remove_is_outside_from_place.rb
+
+# マイグレート
+$ bundle exec rake db:migrate
+== 20160510110533 RemoveIsOutsideFromPlace: migrating =========================
+-- remove_column(:places, :is_outside, :boolean)
+   -> 0.0329s
+   == 20160510110533 RemoveIsOutsideFromPlace: migrated (0.0331s) ================
+```
+
+再度,placeテーブルのseedファイルの書き換える
+
+  * is_outsideカラムを除去
+
+ ```
+ #seedの適応
+ $ bundle exec rake db:seed_fu FIXTURE_PATH=db/fixtures FILTER=place.rb  
+ == Filtering seed files against regexp: /place.rb/
+
+ == Seed from db/fixtures/place.rb
+ - Place {:id=>1, :name_ja=>"事務棟エリア"}
+ - Place {:id=>2, :name_ja=>"図書館エリア"}
+ - Place {:id=>3, :name_ja=>"福利棟エリア"}
+ - Place {:id=>4, :name_ja=>"ステージエリア"}
+ - Place {:id=>5, :name_ja=>"体育館エリア"}
+ - Place {:id=>6, :name_ja=>"セコムホール"}
+ - Place {:id=>7, :name_ja=>"電気棟204"}
+ - Place {:id=>8, :name_ja=>"電気棟206"}
+ - Place {:id=>9, :name_ja=>"電気棟208"}
+ - Place {:id=>10, :name_ja=>"電気棟212"}
+ - Place {:id=>11, :name_ja=>"電気棟310"}
+ - Place {:id=>12, :name_ja=>"講義棟部屋A"}
+ - Place {:id=>13, :name_ja=>"講義棟部屋B"}
+ - Place {:id=>14, :name_ja=>"マルチメディアセンター"}
+ - Place {:id=>15, :name_ja=>"グラウンド"}
+ ```
+ 
+## ステージ利用の申請フォームの選択肢を修正
+ * ``app/models/stage.rb``で, Enableの項目を参照するように変更
+
+## 管理画面側に利用可能場所の操作画面を追加
+```
+$ bundle exec rails g active_admin:resource PlaceAllowList
+Running via Spring preloader in process 58344
+    create  app/admin/place_allow_list.rb
+```
+
+** cancancan **
+developer : PlaceAllowListについてCRUDを許可
+manager   : Read, Updateのみ許可
+
+** 編集画面 **
+developer : 団体カテゴリ, 場所, enableを編集可能
+manager   : enableのみ編集可能
+
 
