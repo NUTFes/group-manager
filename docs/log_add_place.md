@@ -20,12 +20,28 @@ $ bundle exec rake db:migrate
    == 20160509172843 CreatePlaceAllowLists: migrated (0.0886s) ===================
 ```
 
+## ステージ団体が利用可能な場所の指定を行えるようにテーブルを変更
+```
+# enableカラムの追加
+$ bundle exec rails g migration AddEnableToStage enable:boolean
+Running via Spring preloader in process 27019
+    invoke  active_record
+  create    db/migrate/20160510084512_add_enable_to_stage.rb
+```
+
+
 
 ## Seedファイルの変更
 
-新設場所の追加
 ```
+# 新設場所の追加
 db/fixtures/place.rb # データの追加
+
+# 団体カテゴリごとに利用できる場所を指定したシードデータを生成
+db/fixtures/place_allow_list.rb
+
+# ステージ団体用のシードにデータを追加
+db/fixtures/stage.rb
 ```
 
 ## Seedの適応
