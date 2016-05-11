@@ -47,7 +47,7 @@ ja:
         stage:
           name_ja:  場所
           name_en:  場所(英語)
-          is_sunny: 天候
+          is_sunny: 天候(晴天:yes/雨天:no)
           enable:   利用許可
         stage_order:
           group_name: 運営団体の名称

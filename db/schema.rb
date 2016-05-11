@@ -126,13 +126,6 @@ ActiveRecord::Schema.define(version: 20160510110533) do
   add_index "place_allow_lists", ["group_category_id"], name: "index_place_allow_lists_on_group_category_id", using: :btree
   add_index "place_allow_lists", ["place_id"], name: "index_place_allow_lists_on_place_id", using: :btree
 
-  create_table "place_decisions", force: :cascade do |t|
-    t.integer  "group_id"
-    t.integer  "place_decision_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
   create_table "place_orders", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "first"
@@ -262,9 +255,9 @@ ActiveRecord::Schema.define(version: 20160510110533) do
     t.integer  "fes_date_id"
     t.integer  "stage_first"
     t.integer  "stage_second"
+    t.string   "time_interval"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "time_interval"
     t.string   "time_point_start"
     t.string   "time_point_end"
   end

@@ -48,6 +48,8 @@ class Ability
       cannot [:destroy], Place # PlaceOrderからfindで引いている．削除は禁止
       cannot [:destroy], Shop, :id => [*(1..23)]  # Shopは1-23のデフォルトの削除禁止
       cannot [:create, :update, :destroy], StockerPlace # 貸出場所は編集不可
+      cannot [:create,:destroy], PlaceAllowList #場所の許可に関して編集不可
+      cannot [:create,:destroy], Stage #ステージに関して削除は編集不可
       cannot [:destroy], StockerItem  # 貸出物品在庫は削除不可，0で対応
       cannot [:destroy], RentableItem  # 削除不可，0で対応
       cannot [:create,:destroy], PlaceAllowList #場所の許可に関して編集不可
