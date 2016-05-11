@@ -8,6 +8,6 @@ class Stage < ActiveRecord::Base
   end
 
   def self.by_weather( is_sunny )
-    where( is_sunny: is_sunny )
+    where( is_sunny: is_sunny, enable: true)
   end
 end
