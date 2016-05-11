@@ -15,6 +15,7 @@ ja:
       purchase_list: 購入リスト
       shop: 仕入先
       sub_rep: 副代表
+      stage: ステージ
       stage_common_option: ステージ利用の詳細
       stocker_item: 貸出物品の在庫
       rentable_item: 貸出可能物品
@@ -43,6 +44,11 @@ ja:
           power: 電力[W]
           manufacturer: メーカ
           model: 型番
+        stage:
+          name_ja:  場所
+          name_en:  場所(英語)
+          is_sunny: 天候
+          enable:   利用許可
         stage_order:
           group_name: 運営団体の名称
           stage_first: 場所(第一希望)
