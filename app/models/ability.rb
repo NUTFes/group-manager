@@ -41,6 +41,7 @@ class Ability
       can :manage, :all # 下記以外の全てOK
       cannot [:create, :update, :destroy], Role # roleの作成と編集, 編集, 削除は不可
       cannot [:create, :update, :destroy], User # roleを含むため, Userの作成, 編集, 削除は不可
+      cannot [:create, :update, :destroy], RentalItem  # 不用意な増殖・変更を抑止
       cannot [:create, :destroy], RentalOrder # 数量0で対応する．
       cannot [:create, :destroy], StageOrder
       cannot [:create, :destroy], PlaceOrder
@@ -48,6 +49,8 @@ class Ability
       cannot [:destroy], Shop, :id => [*(1..23)]  # Shopは1-23のデフォルトの削除禁止
       cannot [:create, :update, :destroy], StockerPlace # 貸出場所は編集不可
       cannot [:create,:destroy], PlaceAllowList #場所の許可に関して編集不可
+      cannot [:destroy], StockerItem  # 貸出物品在庫は削除不可，0で対応
+      cannot [:destroy], RentableItem  # 削除不可，0で対応
     end
     if user.role_id == 3 then # for user (デフォルトのrole)
       can :manage, :welcome
