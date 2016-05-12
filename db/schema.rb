@@ -270,9 +270,11 @@ ActiveRecord::Schema.define(version: 20160512162339) do
   create_table "stages", force: :cascade do |t|
     t.string   "name_ja"
     t.string   "name_en"
-    t.boolean  "is_sunny"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "enable_sunny"
+    t.boolean  "enable_rainy"
+    t.boolean  "enable"
   end
 
   create_table "stocker_items", force: :cascade do |t|
