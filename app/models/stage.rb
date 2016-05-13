@@ -11,6 +11,8 @@ class Stage < ActiveRecord::Base
   end
 
   def self.by_weather( is_sunny )
-    where( is_sunny: is_sunny )
+    return where( enable_sunny: true, enable: true ) if is_sunny == true
+    return where( enable_rainy: true, enable: true ) if is_sunny == false
+
   end
 end
