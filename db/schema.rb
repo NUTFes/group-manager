@@ -268,13 +268,13 @@ ActiveRecord::Schema.define(version: 20160512162339) do
   add_index "stage_orders", ["group_id"], name: "index_stage_orders_on_group_id", using: :btree
 
   create_table "stages", force: :cascade do |t|
-    t.string   "name_ja"
+    t.string   "name_ja",                      null: false
     t.string   "name_en"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.boolean  "enable_sunny"
-    t.boolean  "enable_rainy"
-    t.boolean  "enable"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "enable_sunny", default: false
+    t.boolean  "enable_rainy", default: false
+    t.boolean  "enable",       default: false
   end
 
   create_table "stocker_items", force: :cascade do |t|
