@@ -26,6 +26,7 @@ namespace :change_stage_weather_columns do
   def exchager(stage_id)
     return 3 if stage_id==5
     return 4 if stage_id==6
+    return 5 if stage_id==7
     stage_id
   end
 
