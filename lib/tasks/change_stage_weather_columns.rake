@@ -1,6 +1,10 @@
 namespace :change_stage_weather_columns do
   desc "既存のStageOrderからStageの重複データを取り除く"
 
+  task delete_stage_all_records: :environment do
+    Stage.delete_all
+  end
+
   task copy: :environment do
     groups = Group.where(group_category_id: 3)
 
