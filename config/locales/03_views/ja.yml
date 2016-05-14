@@ -75,3 +75,6 @@ ja:
       hint_name_ja: 例) 技大 太郎
       hint_name_en: 半角英字のみ 例) Tarou Gidai
       hint_tel: 半角の数字とハイフンのみ(XXX-XXXX-XXXX or XXXX-XX-XXXX), 緊急時の連絡先に使用します. 連絡可能な番号をご登録ください.
+  place_orders:
+    form:
+      hint_place: 講義棟部屋A(103講義室などの大きい講義室), 講義棟部屋B(104講義室などの小さい講義室)

@@ -13,8 +13,11 @@
 
   <%= f.input :third,
     collection: Place.collections( @place_order.group_id ),
-    selected: @place_order.third %>
+    selected: @place_order.third,
+    hint: t(".hint_place")
+  %>
   <%= error_span(@place_order[:third]) %>
+
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
