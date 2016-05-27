@@ -2,7 +2,9 @@
 
 <%# 副代表未登録の警告 %>
 <%= render partial: 'shared/warning_subrep' %>
+<%# 企画名未登録の警告 %>
+<%= render partial: 'shared/warning_project_name' %>
 
 <% @config_panel.each do |panel| %>
-  <%= show_enable_panel(panel, @num_nosubrep_groups) %>
+  <%= show_enable_panel(panel, @num_nosubrep_groups, @num_no_project_groups) %>
 <% end %>

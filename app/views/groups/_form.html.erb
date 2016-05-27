@@ -6,6 +6,12 @@
     hint: t(".hint_name")
   %>
   <%= error_span(@group[:name]) %>
+
+  <%= f.input :project_name,
+    hint: t(".hint_project_name")
+  %>
+  <%= error_span(@group[:project_name]) %>
+
   <%= f.association :group_category,
     hint: t(".hint_group_category")
   %>

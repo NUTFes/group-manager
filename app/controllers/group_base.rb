@@ -12,9 +12,15 @@ class GroupBase < ApplicationController
                     where(fes_year: this_year)
     # ログインユーザの所有しているグループのうち，
     # 副代表が登録されていない団体数を取得する
-    @num_nosubrep_groups = @groups.count -
-                           Group.where(fes_year: this_year).
-                                 get_has_subreps(current_user.id).count
+    @num_nosubrep_groups    = @groups.count -
+                              @groups.get_has_subreps(current_user.id).count
+
+    # ログインユーザの所有しているグループのうち，
+    # 企画名を持たない参加団体を取得する
+    @num_no_project_groups  = @groups.count -
+                              @groups.where.not(project_name: nil).count
+
+
   end
 
 end

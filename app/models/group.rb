@@ -5,6 +5,7 @@ class Group < ActiveRecord::Base
   has_many :sub_reps
 
   validates :name, presence: true, uniqueness: { scope: :fes_year }
+  validates :project_name, presence: true, uniqueness: true
   validates :user, presence: true
   validates :activity, presence: true
   validates :group_category, presence: true

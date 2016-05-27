@@ -84,7 +84,6 @@ class GroupsController < GroupBase
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).
-        permit(:name, :group_category_id, :user_id, :activity, :first_question,
-               :fes_year_id)
+        permit(:name, :project_name, :group_category_id, :user_id, :activity, :first_question, :fes_year_id)
     end
 end

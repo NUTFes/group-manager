@@ -1,5 +1,10 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
+<% if @num_no_project_groups > 0 %>
+  <%# 企画名を未登録の団体がある場合は枠をwarningへ変更 %>
+  <div class="panel panel-warning">
+<% else %>
+  <div class="panel panel-primary">
+<% end %>
+    <div class="panel-heading">
     <h3 class="panel-title">参加団体</h3>
   </div>
   <div class="panel-body">
