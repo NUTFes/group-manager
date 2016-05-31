@@ -22,7 +22,6 @@ users = [{
  },
 ]
 
-
 users.each do |u|
     user = User.new(u)
     user.skip_confirmation!
