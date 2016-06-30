@@ -1,0 +1,46 @@
+<style type='text/css'>
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+  }
+  caption, th, td {
+    text-align: center;
+    font-weight: normal;
+    vertical-align: middle;
+    border: solid 1px;
+    padding: 0.5em;
+  }
+  .pagebreak{
+    page-break-after: always;
+  }
+</style>
+
+<h2 align='center'>
+    検便対象者一覧
+</h2>
+  <table align='center'>
+      <thead>
+        <tr>
+          <td>団体名</td>
+          <td>学籍番号</td>
+          <td>名前</td>
+          <td>受け取り1日目</td>
+          <td>受け取り2日目</td>
+          <td width='30%'>備考</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.group.name %></td>
+            <td><%= employee.student_id %></td>
+            <td><%= employee.name %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </tbody>
+  </table>
