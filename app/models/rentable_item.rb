@@ -10,4 +10,10 @@ class RentableItem < ActiveRecord::Base
   # validate 貸し出し可能数は在庫数以下
   validates_with RentableItemValidator, on: :create
   validates_with RentableItemValidator, on: :update
+
+  def self.this_year_items
+    this_year = FesYear.this_year
+    RentableItem.joins(:stocker_item).where(stocker_items:{fes_year_id:this_year})
+  end
+
 end

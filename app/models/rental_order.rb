@@ -8,4 +8,9 @@ class RentalOrder < ActiveRecord::Base
   }
   validates :group_id, :uniqueness => {:scope => :rental_item_id }
 
+
+  def self.this_year_order
+    this_year = FesYear.this_year
+    RentalOrder.joins(:group).where(groups:{fes_year_id: this_year})
+  end
 end
