@@ -23,4 +23,6 @@ class PowerOrder < ActiveRecord::Base
   validates_with PowerOrderCreateValidator, on: :create
   validates_with PowerOrderUpdateValidator, on: :update
 
+  scope :find_from_group, -> (group_id) {where( group_id: group_id )}
+
 end

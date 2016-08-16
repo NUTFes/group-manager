@@ -1,2 +1,54 @@
-<h1>GroupOrdersCheckPages#show</h1>
-<p>Find me in app/views/group_orders_check_pages/show.html.erb</p>
+<style type='text/css'>
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+  }
+  caption, th, td {
+    text-align: center;
+    font-weight: normal;
+    vertical-align: middle;
+    border: solid 1px;
+    padding: 0.5em;
+  }
+  .pagebreak{
+    page-break-after: always;
+  }
+
+</style>
+
+<% @groups.each do |group| %>
+  <% power_items = PowerOrder.find_from_group(group.id)%>
+  <div class='pagebreak'>
+    <h2 align='center'>
+      割り当て物品および電気の確認書類
+    </h2>
+    <div>
+      <div align='right'>団体名:<%= group.name %></div>
+    </div>
+    <div>
+        <div align='left'>電力申請 一覧</div>
+        <table align='center'>
+          <thead>
+            <tr>
+              <td rowspan="1">品名</td>
+              <td rowspan="1">メーカー</td>
+              <td rowspan="1">型番</td>
+              <td rowspan="1">消費電力</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% power_items.each do |power_item| %>
+              <tr>
+                <td><%= power_item.item%></td>
+                <td><%= power_item.manufacturer%></td>
+                <td><%= power_item.model%></td>
+                <td><%= power_item.power%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </tbody>
+    </table>
+    </div>
+</div>
+<% end %>
