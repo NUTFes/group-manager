@@ -1,0 +1,26 @@
+PowerOrder.seed(:id,
+{
+  id: 10000015,
+  group_id: 1000015,
+  item: 'hoge ex' ,
+  power: 500,
+  manufacturer: 'ほげほげ' ,
+  model: 'hoge edition',
+},
+{
+  id: 10000016,
+  group_id: 1000015,
+  item: 'foo ' ,
+  power: 100,
+  manufacturer: 'foo製' ,
+  model: 'foo edition',
+},
+{
+  id: 10000017,
+  group_id: 1000015,
+  item: 'bar ' ,
+  power: 150,
+  manufacturer: 'bar製' ,
+  model: 'bar edition',
+},
+)

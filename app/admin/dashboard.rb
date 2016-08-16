@@ -37,6 +37,7 @@ ActiveAdmin.register_page "Dashboard" do
 
       end
     end
+
     columns do
       column do
         panel "検便対象者書類" do
@@ -46,6 +47,16 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
+
+    columns do
+      column do
+        panel "電力・物品割り当て 確認書類" do
+          li link_to("各団体向け 確認書類", group_orders_check_pages_for_groups_path(format: 'pdf'))
+          li link_to("電力担当者向け 確認書類", group_orders_check_pages_for_maintainers_path(format: 'pdf'))
+        end
+      end
+    end
+
 
   end # content
 

@@ -13,4 +13,10 @@ class PlaceOrder < ActiveRecord::Base
         errors.add( :third , "候補が重複しています。")
     end
   end
+
+  def to_s
+    self.group.name
+  end
+
+  scope :find_from_group, -> (group_id) {where( group_id: group_id )}
 end
