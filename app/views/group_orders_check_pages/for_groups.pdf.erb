@@ -18,13 +18,13 @@
 </style>
 
 <% @groups.each do |group| %>
-  <% power_items = PowerOrder.find_from_group(group.id)%>
   <div class='pagebreak'>
     <h2 align='center'>
-      割り当て物品および電気の確認書類
+      物品および電力の割当の確認書類
     </h2>
     <div>
       <div align='right'>団体名:<%= group.name %></div>
+      <div align='right'>申請場所:</div>
     </div>
     <div>
         <div align='left'>電力申請 一覧</div>
@@ -38,12 +38,34 @@
             </tr>
           </thead>
           <tbody>
+            <% power_items = PowerOrder.find_from_group(group.id)%>
             <% power_items.each do |power_item| %>
               <tr>
                 <td><%= power_item.item%></td>
                 <td><%= power_item.manufacturer%></td>
                 <td><%= power_item.model%></td>
                 <td><%= power_item.power%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </tbody>
+    </table>
+    </div>
+    <div>
+        <div align='left'>貸出物品 一覧</div>
+        <table align='center'>
+          <thead>
+            <tr>
+              <td rowspan="1">品名</td>
+              <td rowspan="1">総量</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% rental_order_items = RentalOrder.find_from_group(group.id)%>
+            <% rental_order_items.each do |rental_order_item| %>
+              <tr>
+                <td><%= rental_order_item.rental_item.name_ja%></td>
+                <td><%= rental_order_item.num%></td>
               </tr>
             <% end %>
           </tbody>

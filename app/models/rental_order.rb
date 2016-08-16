@@ -13,4 +13,6 @@ class RentalOrder < ActiveRecord::Base
     self.group.name + ' (' + self.rental_item.name_ja + \
     ', 数: ' + self.num.to_s + ')'
   end
+
+  scope :find_from_group, -> (group_id) {where( group_id: group_id )}
 end
