@@ -17,4 +17,6 @@ class PlaceOrder < ActiveRecord::Base
   def to_s
     self.group.name
   end
+
+  scope :find_from_group, -> (group_id) {where( group_id: group_id )}
 end

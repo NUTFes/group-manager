@@ -33,9 +33,8 @@ class GroupOrdersCheckPagesController < ApplicationController
 
   def for_maintainers
     this_year = FesYear.this_year
-    @food_products = FoodProduct.non_cooking_products(this_year.id)
+    @groups = Group.where(fes_year:this_year.id)
 
-    @fes_dates = this_year.fes_date.all()
     preview_pdf_page("for_maintainers", "電気担当者向け")
   end
 

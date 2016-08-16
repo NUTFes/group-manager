@@ -1,0 +1,62 @@
+<style type='text/css'>
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+  }
+  caption, th, td {
+    text-align: center;
+    font-weight: normal;
+    vertical-align: middle;
+    border: solid 1px;
+    padding: 0.5em;
+  }
+  .pagebreak{
+    page-break-after: always;
+  }
+
+</style>
+
+
+<div class='pagebreak'>
+  <h2 align='center'>
+    物品および電力の割当の確認書類(電力担当者向け)
+  </h2>
+
+  <div>
+    <div align='left'>電力申請 一覧</div>
+    <table align='center'>
+      <thead>
+        <tr>
+          <td rowspan="2">カテゴリ</td>
+          <td rowspan="2">管理番号</td>
+          <td rowspan="2">団体名</td>
+          <td colspan="4">電力物品</td>
+        </tr>
+        <tr>
+              <td rowspan="1">品名</td>
+              <td rowspan="1">メーカー</td>
+              <td rowspan="1">型番</td>
+              <td rowspan="1">消費電力</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
+          <% power_items = PowerOrder.find_from_group(group.id)%>
+          <% power_items.each do |power_item| %>
+          <tr>
+            <td><%= group.group_category.name_ja%></td>
+            <td><%= group.id%></td>
+            <td><%= group.name%></td>
+            <td><%= power_item.item%></td>
+            <td><%= power_item.manufacturer%></td>
+            <td><%= power_item.model%></td>
+            <td><%= power_item.power%></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </tbody>
+    </table>
+  </div>
+</div>
