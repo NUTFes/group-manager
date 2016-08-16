@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'health_check_pages/cooking'
   get 'health_check_pages/no_cooking'
 
+  get 'group_orders_check_pages/for_groups'
+  get 'group_orders_check_pages/for_maintainers'
+
   get 'stool_test_pages/check_sheet'
   get 'stool_test_pages/for_examiner_sheet'
   get 'stool_test_pages/for_health_center_sheet'
