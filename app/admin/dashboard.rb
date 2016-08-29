@@ -55,6 +55,14 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    columns do
+      column do
+        panel "参加団体情報書類" do
+          li link_to("参加団体情報管理表", group_information_pages_group_information_sheet_path(format: 'pdf'))
+        end
+      end
+    end
+
   end # content
 
 end
