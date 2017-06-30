@@ -38,5 +38,7 @@ ActiveAdmin.register PurchaseList do
     column :items
   end
 
+  preserve_default_filters!
+  filter :fes_year
 
 end
