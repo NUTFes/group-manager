@@ -2,6 +2,7 @@ class AssignStage < ActiveRecord::Base
   belongs_to :stage_order
   belongs_to :stage
   has_one :fes_year, through: :stage_order
+  has_one :group, through: :stage_order
 
   validates_presence_of :stage_order_id, :stage_id
   validate :time_is_only_selected, :start_to_end
