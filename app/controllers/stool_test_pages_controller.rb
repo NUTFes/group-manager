@@ -42,7 +42,7 @@ class StoolTestPagesController < ApplicationController
 
   def for_health_center_sheet
     # 検便実施日
-    @date_of_stool_test = GroupManagerCommonOption.first.date_of_stool_test
+    @date_of_stool_test = GroupManagerCommonOption.second.date_of_stool_test
 
     @employees = Employee.cooking_employees(FesYear.this_year.id)
 
