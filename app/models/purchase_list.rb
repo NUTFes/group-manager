@@ -3,6 +3,7 @@ class PurchaseList < ActiveRecord::Base
   belongs_to :shop
   belongs_to :fes_date
   has_one :fes_year, through: :food_product
+  has_one :group, through: :food_product
 
   validates_presence_of :food_product_id, :shop_id, :fes_date_id, :items
   validates :food_product_id, uniqueness: {scope: [:shop_id, :fes_date_id]}

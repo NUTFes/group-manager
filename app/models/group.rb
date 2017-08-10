@@ -13,6 +13,22 @@ class Group < ActiveRecord::Base
   validates :fes_year, presence: true
 
   scope :year, -> (year) {where(fes_year_id: year)}
+  scope :active_admin_collection, -> (group_category_id) { # ActiveAdminのフィルター用コレクション, group_category_id: 0ですべてのグループを取得
+    fes_years = FesYear.all.order("id DESC") # 降順ですべてのFesYearを取得
+    groups = []
+    fes_years.each do |fes_year|
+      the_year_groups = Group.where(fes_year: fes_year)
+                             .order('name COLLATE "C" ASC') # その年のグループを取得.日本語ソート（漢字は無理）
+      if group_category_id != 0
+        the_year_groups = the_year_groups.where(group_category_id: group_category_id)
+      end
+      if the_year_groups.blank? == false
+        groups.push( Group.new(id: nil, name: "---------------------" + fes_year.to_s.to_s + "---------------------") ) # セパレータを追加
+        the_year_groups.each {|group| groups.push(group)}
+      end
+    end
+    groups
+  }
 
   # simple_form, activeadminで表示するカラムを指定
   # 関連モデル.groupが関連モデル.group.nameと同等になる
