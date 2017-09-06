@@ -15,5 +15,6 @@ Place.seed( :id,
   { id: 14 , name_ja: 'マルチメディアセンター' } ,
   { id: 15 , name_ja: 'グラウンド'     },
   { id: 16 , name_ja: '規定外の場所'   },
-  { id: 17 , name_ja: '機械棟エリア'   }
+  { id: 17 , name_ja: '機械棟エリア'   },
+  { id: 18 , name_ja: '生物棟エリア'   }
 )
