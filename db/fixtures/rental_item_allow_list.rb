@@ -40,8 +40,8 @@ RentalItemAllowList.seed( :id,
   # マイクの貸し出し可能な団体種別
   { id: 32, rental_item_id: 8, group_category_id: 3}, # ステージ
   # テントの貸出可能な団体種別
-  { id: 33, rental_item_id: 9, group_category_id: 1}, # 模擬店(食品)
-  { id: 34, rental_item_id: 9, group_category_id: 2}, # 模擬店(物品)
-  { id: 35, rental_item_id: 9, group_category_id: 4}, # 展示体験
-  { id: 36, rental_item_id: 9, group_category_id: 5}, # その他
+  { id: 33, rental_item_id: 10, group_category_id: 1}, # 模擬店(食品)
+  { id: 34, rental_item_id: 10, group_category_id: 2}, # 模擬店(物品)
+  { id: 35, rental_item_id: 10, group_category_id: 4}, # 展示体験
+  { id: 36, rental_item_id: 10, group_category_id: 5}, # その他
 )
