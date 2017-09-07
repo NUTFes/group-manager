@@ -7,5 +7,6 @@ RentalItem.seed( :id,
   { id: 6, name_ja: '掲示板',         name_en: 'bulletin board' , is_rentable: true},
   { id: 7, name_ja: '暗幕',           name_en: 'black curtain'  , is_rentable: true},
   { id: 8, name_ja: 'マイク',         name_en: 'microphone'     , is_rentable: true},
-  { id: 9, name_ja: 'テント',         name_en: 'tent'           , is_rentable: true},
+  { id: 9, name_ja: '椅子',           name_en: 'chair'          , is_rentable: true},
+  { id: 10, name_ja: 'テント',        name_en: 'tent'           , is_rentable: true},
 )
