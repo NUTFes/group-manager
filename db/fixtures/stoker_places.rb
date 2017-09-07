@@ -55,5 +55,5 @@ StockerPlace.seed( :id,
 { id: 54 , name: '課外活動共用施設' , is_available_fesdate: false} ,
 { id: 55 , name: 'セコムホール(北側倉庫)' , } ,
 { id: 56 , name: 'セコムホール(入口側倉庫)' , } ,
-{ id: 56 , name: '本部(福利棟)' ,},
+{ id: 57 , name: '本部(福利棟)' ,},
 )
