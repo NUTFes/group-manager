@@ -55,7 +55,7 @@
     </tr>
     <tr>
       <td>電力</td>
-      <td colspan="2"><%= PowerOrder.where(group_id: group.id).first.try(:power) %> [W]</td>
+      <td colspan="2"><%= PowerOrder.where(group_id: group.id).sum(:power) %> [W]</td>
     </tr>
   </table>
   <br>
