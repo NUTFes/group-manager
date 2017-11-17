@@ -1,6 +1,6 @@
 class FoodProduct < ActiveRecord::Base
   belongs_to :group
-  has_many :purchase_list
+  has_many :purchase_list, dependent: :destroy
   has_many :employees, through: :group
   has_one :fes_year, through: :group
 

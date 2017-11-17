@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
     :confirmable
 
   belongs_to :role      # Userからroleを参照可能にする, ex) User.find(1).role
-  has_one :user_detail  # UserからUserDetailを参照可能にする
-  has_many :groups
+  has_one :user_detail, dependent: :destroy  # UserからUserDetailを参照可能にする
+  has_many :groups, dependent: :destroy
 
   before_create :set_default_role
 
