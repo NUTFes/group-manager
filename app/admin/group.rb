@@ -12,6 +12,7 @@ ActiveAdmin.register Group do
     column :group_category
     column :activity
     column :created_at
+    column :first_question
     actions
   end
 
