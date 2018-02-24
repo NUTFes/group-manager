@@ -2,9 +2,15 @@ class Group < ActiveRecord::Base
   belongs_to :group_category
   belongs_to :user
   belongs_to :fes_year
-  has_many :sub_reps
-  has_many :food_products
-  has_many :employees
+  has_many :sub_reps, dependent: :destroy
+  has_many :food_products, dependent: :destroy
+  has_many :employees, dependent: :destroy
+  has_many :rental_orders, dependent: :destroy
+  has_many :power_orders, dependent: :destroy
+  has_many :stage_orders, dependent: :destroy
+  has_many :group_project_name, dependent: :destroy
+  has_one :place_order, dependent: :destroy
+  has_many :stage_common_option, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :fes_year }
   validates :user, presence: true

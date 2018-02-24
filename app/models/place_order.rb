@@ -1,6 +1,7 @@
 class PlaceOrder < ActiveRecord::Base
   belongs_to :group
   has_one :fes_year, through: :group
+  has_one :assign_group_place, dependent: :destroy
 
   validate :select_different_stage
   validate :write_remark
