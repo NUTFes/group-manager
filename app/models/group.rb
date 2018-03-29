@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
   has_many :stage_orders, dependent: :destroy
   has_many :group_project_name, dependent: :destroy
   has_one :place_order, dependent: :destroy
-  has_many :stage_common_option, dependent: :destroy
+  has_one :stage_common_option, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :fes_year }
   validates :user, presence: true
