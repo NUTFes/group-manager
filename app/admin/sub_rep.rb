@@ -15,6 +15,7 @@ ActiveAdmin.register SubRep do
 
   permit_params :group_id, :name_ja, :name_en, :department_id, :grade_id, :tel,
                 :email
+  belongs_to :group, optional: true
 
   index do
     selectable_column

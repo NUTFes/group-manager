@@ -1,6 +1,7 @@
 ActiveAdmin.register Employee do
 
   permit_params :group_id, :name, :student_id, :employee_category_id
+  belongs_to :group, optional: true
 
   index do
     selectable_column

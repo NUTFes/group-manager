@@ -1,6 +1,7 @@
 ActiveAdmin.register PowerOrder do
 
   permit_params :group_id, :item, :power, :manufacturer, :model
+  belongs_to :group, optional: true
 
   index do
     selectable_column

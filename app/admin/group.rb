@@ -59,6 +59,16 @@ ActiveAdmin.register Group do
     active_admin_comments
   end
 
+  sidebar "詳細へのリンク", only: [:show] do
+    hm_children = Group.reflect_on_all_associations(:has_many) # has_many関係にあるモデルを全て取得
+
+    ul do
+      hm_children.each do |child|
+        li link_to child.klass.model_name.human, [:admin, group, child.name]
+      end
+    end
+  end
+
   preserve_default_filters!
   filter :fes_year
 

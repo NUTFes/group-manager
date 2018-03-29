@@ -2,6 +2,7 @@ ActiveAdmin.register RentalOrder do
 
 
   permit_params :num
+  belongs_to :group, optional: true
 
   index do
     selectable_column
