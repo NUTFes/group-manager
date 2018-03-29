@@ -61,10 +61,18 @@ ActiveAdmin.register Group do
 
   sidebar "詳細へのリンク", only: [:show] do
     hm_children = Group.reflect_on_all_associations(:has_many) # has_many関係にあるモデルを全て取得
+    ho_children = Group.reflect_on_all_associations(:has_one) # has_one関係にあるモデルを全て取得
 
     ul do
       hm_children.each do |child|
         li link_to child.klass.model_name.human, [:admin, group, child.name]
+      end
+
+      ho_children.each do |child|
+        c = group.send(child.name)
+        if c != nil
+          li link_to child.klass.model_name.human, [:admin, child.klass.find(c.id)] # group.send(child.name)ではなぜかうまくいかないので再度探してくる
+        end
       end
     end
   end
