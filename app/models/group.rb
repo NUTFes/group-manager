@@ -8,7 +8,7 @@ class Group < ActiveRecord::Base
   has_many :rental_orders, dependent: :destroy
   has_many :power_orders, dependent: :destroy
   has_many :stage_orders, dependent: :destroy
-  has_many :group_project_name, dependent: :destroy
+  has_many :group_project_names, dependent: :destroy
   has_one :place_order, dependent: :destroy
   has_one :stage_common_option, dependent: :destroy
 
