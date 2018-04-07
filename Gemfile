@@ -47,6 +47,10 @@ group :development, :test do
   gem 'pry-doc'     # methodを表示
   gem 'pry-byebug'  # デバッグを実施
   gem 'pry-stack_explorer' # スタックをたどれる
+
+  # RSpecでテスト
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 
