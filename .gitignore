@@ -13,3 +13,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore RubyMine setting_file
+.idea
