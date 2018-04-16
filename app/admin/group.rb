@@ -65,10 +65,16 @@ ActiveAdmin.register Group do
 
     ul do
       hm_children.each do |child|
+        if child.kind_of?(ActiveRecord::Reflection::ThroughReflection) # throughアソシエーションの場合は中のActiveRecord::Reflection::HasManyReflectionを取得する
+          child = child.delegate_reflection
+        end
         li link_to child.klass.model_name.human, [:admin, group, child.name]
       end
 
       ho_children.each do |child|
+        if child.kind_of?(ActiveRecord::Reflection::ThroughReflection)
+          child = child.delegate_reflection
+        end
         c = group.send(child.name)
         if c != nil
           li link_to child.klass.model_name.human, [:admin, child.klass.find(c.id)] # group.send(child.name)ではなぜかうまくいかないので再度探してくる
