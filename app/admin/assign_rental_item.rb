@@ -1,6 +1,7 @@
 ActiveAdmin.register AssignRentalItem do
 
   permit_params :rental_order_id, :rentable_item_id, :num
+  belongs_to :group, optional: true
 
 
   action_item only: :index do
