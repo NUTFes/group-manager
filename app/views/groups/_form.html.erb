@@ -15,10 +15,6 @@
     hint: t(".hint_activity")
   %>
   <%= error_span(@group[:activity]) %>
-  <%= f.input :first_question,
-    hint: t(".hint_questions")
-  %>
-  <%= error_span(@group[:first_question]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
