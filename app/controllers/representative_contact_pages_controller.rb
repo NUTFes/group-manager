@@ -1,0 +1,2 @@
+class RepresentativeContactPagesController < ApplicationController
+end
