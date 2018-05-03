@@ -1,5 +1,7 @@
 <div class="jumbotron">
   <h1>Dashboard</h1>
   <p><%= "ようこそ #{@name} さん" %></p>
-  <p>技大祭に関する各種申請が可能です。</p>
+  <p>技大祭に関する各種申請が可能です。</p><br>
+  <h6>参加団体アプリマニュアルは<%= link_to "こちら" %>から</h6>
+  <h6>質問要望などございましたら，参加団体名をご明記の上，<%= mail_to('nutfes.soumu@gmail.com', name = nil, html_options = {}) %>までご連絡ください。</h6>
 </div>
