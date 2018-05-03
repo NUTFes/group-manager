@@ -4,4 +4,5 @@ Stage.seed( :id,
   { id: 3 , name_ja: '体育館'                 , enable_sunny: true,  enable_rainy: true  } ,
   { id: 4 , name_ja: 'マルチメディアセンター' , enable_sunny: true,  enable_rainy: true  } ,
   { id: 5 , name_ja: '武道館'                 , enable_sunny: true,  enable_rainy: true  } ,
+  { id: 6 , name_ja: 'なし'                   , enable_sunny: true,  enable_rainy: true  } ,
 )
