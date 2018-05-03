@@ -39,4 +39,23 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Disabled ActionMailer
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.secrets.smtp_adress,
+    port: Rails.application.secrets.smtp_port,
+    domain: Rails.application.secrets.domain_name,
+    authentication: Rails.application.secrets.smtp_auth,
+    tls: Rails.application.secrets.smtp_tls,
+    enable_starttls_auto: true,
+    user_name: Rails.application.secrets.email_username,
+    password: Rails.application.secrets.email_password
+  }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_options = {
+    bcc: Rails.application.secrets.email_bcc
+  }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = false
 end
