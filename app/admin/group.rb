@@ -1,7 +1,6 @@
 ActiveAdmin.register Group do
 
-  permit_params :user_id, :name, :group_category_id, :activity, :first_question,
-                :fes_year_id
+  permit_params :user_id, :name, :group_category_id, :activity, :fes_year_id
 
   index do
     selectable_column
@@ -12,7 +11,6 @@ ActiveAdmin.register Group do
     column :group_category
     column :activity
     column :created_at
-    column :first_question
     actions
   end
 
@@ -54,7 +52,6 @@ ActiveAdmin.register Group do
         group.sub_reps.map(&:tel).join(", ")
       end
       row :activity
-      row :first_question
       row :created_at
       row :updated_at
       row :fes_year_id
