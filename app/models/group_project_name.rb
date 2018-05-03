@@ -5,4 +5,5 @@ class GroupProjectName < ActiveRecord::Base
   validates_presence_of :project_name, :project_name
   validates_numericality_of :group_id
   validates :project_name, uniqueness: true
+  validates :group_id, uniqueness: true
 end
