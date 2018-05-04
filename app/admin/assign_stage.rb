@@ -1,6 +1,7 @@
 ActiveAdmin.register AssignStage do
 
   permit_params :stage_id, :time_point_start, :time_point_end
+  belongs_to :group, optional: true
 
   index do
     selectable_column

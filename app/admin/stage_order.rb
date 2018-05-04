@@ -1,6 +1,7 @@
 ActiveAdmin.register StageOrder do
 
   permit_params :group_id, :fes_date_id, :is_sunny, :stage_first, :stage_second, :time_point_start, :time_point_end, :time_interval
+  belongs_to :group, optional: true
 
   index do
     selectable_column

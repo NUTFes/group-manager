@@ -1,5 +1,6 @@
 ActiveAdmin.register GroupProjectName do
   permit_params :project_name
+  belongs_to :group, optional: true
 
   index do
     selectable_column

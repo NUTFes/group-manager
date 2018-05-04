@@ -1,6 +1,7 @@
 ActiveAdmin.register FoodProduct do
 
   permit_params :group_id, :name, :num, :is_cooking
+  belongs_to :group, optional: true
 
   index do
     selectable_column
