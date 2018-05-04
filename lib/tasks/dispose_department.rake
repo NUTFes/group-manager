@@ -26,6 +26,17 @@ namespace :disposed_department do
     end
   end
 
+  # 不要なデータを消す
+  task delete: :environment do
+    used_id = 20 # 20までは使う
+
+    Department.where("id > #{used_id}").each do |d|
+      d.destroy
+
+      puts "id: #{d.id}, #{d} deleted."
+    end
+  end
+
   def exchanger(current_id)
     pat = {
       1 => 1,
