@@ -1,0 +1,56 @@
+<style type='text/css'>
+   body {
+       font-family: "IPAGothic"
+   }
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+    width: 100%;
+    table-layout: fixed;
+  }
+  caption, th, td {
+    text-align: center;
+    font-weight: normal;
+    vertical-align: middle;
+    border: solid 1px;
+    padding: 0.5em;
+  }
+  .pagebreak{
+    page-break-after: always;
+  }
+</style>
+<div>
+<table>
+  <tbody>
+    <tr>
+      <td rowspan="2">グループ名</td>
+      <td>代表者名</td>
+      <td>代表者電話番号</td>
+      <td>代表者メールアドレス</td>
+    </tr>
+    <tr>
+      <td>副代表者名</td>
+      <td>副代表者電話番号</td>
+      <td>副代表者メールアドレス</td>
+    </tr>
+  </tbody>
+  <% @groups.each do |group| %>
+    <tbody>
+      <tr>
+        <td rowspan="#{1+SubRep.where(group_id:group_id).length}"></td>
+        <td><%= UserDetail.where(user_id:group.user_id).first.name_ja %></td>
+        <td><%= UserDetail.where(user_id:group.user_id).first.tel %></td>
+        <td><%= User.where(id:group.user_id).first.email %></td>
+      </tr>
+      <tr>
+        <%= SubRep.where(group_id:group.id) do |subrep| %>
+        <td><%= subrep.name_ja %></td>
+        <td><%= subrep.tel %></td>
+        <td><%= subrep.email %></td>
+        <% end %>
+      </tr>
+    <tbody>
+  <% end %>
+  </table>
+</div>
