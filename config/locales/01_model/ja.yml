@@ -28,7 +28,7 @@ ja:
     attributes:
         group:
           name: 運営団体の名称
-          group_category_id: 参加形式
+          group_category: 参加形式
           user_name: 氏名
           user_id: Email
           user_tel: 電話番号
