@@ -11,5 +11,7 @@
 ## 変更点
 app/views/welcome/_dashboard.html.erb
 に以下の内容を追記
-``` <h6>参加団体アプリマニュアルは<%= link_to "こちら" %>から</h6>
-<h6>質問要望などございましたら，参加団体名をご明記の上，<%= mail_to('nutfes.soumu@gmail.com', name = nil, html_options = {}) %>までご連絡ください。</h6> ```  
+```
+<h6>参加団体アプリマニュアルは<%= link_to "こちら" %>から</h6>
+<h6>質問要望などございましたら，参加団体名をご明記の上，<%= mail_to('nutfes.soumu@gmail.com', name = nil, html_options = {}) %>までご連絡ください。</h6>
+```  
