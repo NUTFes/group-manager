@@ -60,6 +60,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "代表者一覧" do
           li link_to('[ダウンロード] 参加団体メーリングリスト', download_group_list_admin_groups_path(format: 'csv'))
+          li link_to('代表者連絡先一覧', representative_contact_pages_representative_contact_sheet_path(format: 'pdf'))
         end
       end
     end
