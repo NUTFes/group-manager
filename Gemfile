@@ -56,7 +56,7 @@ end
 gem 'devise'
 gem 'devise-i18n' # アプリのlocalにあわせて多言語化
 # 管理画面
-gem 'activeadmin'
+gem 'activeadmin', '1.0.0'
 # 権限管理
 gem 'cancancan', '~> 1.10'
 # 初期データ入力
