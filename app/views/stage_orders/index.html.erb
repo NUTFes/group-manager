@@ -8,9 +8,15 @@
       <th><%= model_class.human_attribute_name(:group_name) %></th>
       <th><%= model_class.human_attribute_name(:fes_date_id) %></th>
       <th><%= model_class.human_attribute_name(:is_sunny) %></th>
-      <th><%= model_class.human_attribute_name(:time_point_start) %></th>
-      <th><%= model_class.human_attribute_name(:time_point_end) %></th>
-      <th><%= model_class.human_attribute_name(:time_interval) %></th>
+
+      <th><%= model_class.human_attribute_name(:use_time_interval) %></th>
+      <th><%= model_class.human_attribute_name(:prepare_time_interval) %></th>
+      <th><%= model_class.human_attribute_name(:cleanup_time_interval) %></th>
+      <th><%= model_class.human_attribute_name(:prepare_start_time) %></th>
+      <th><%= model_class.human_attribute_name(:performance_start_time) %></th>
+      <th><%= model_class.human_attribute_name(:performance_end_time) %></th>
+      <th><%= model_class.human_attribute_name(:cleanup_end_time) %></th>
+
       <th><%= model_class.human_attribute_name(:stage_first) %></th>
       <th><%= model_class.human_attribute_name(:stage_second) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -22,9 +28,15 @@
         <td><%= stage_order.group.name %></td>
         <td><%= stage_order.date %></td>
         <td><%= stage_order.tenki %></td>
-        <td><%= stage_order.time_point_start %></td>
-        <td><%= stage_order.time_point_end %></td>
-        <td><%= stage_order.time_interval %></td>
+
+        <td><%= stage_order.use_time_interval.empty? ? "未回答" : stage_order.use_time_interval %></td>
+        <td><%= stage_order.prepare_time_interval.empty? ? "未回答" : stage_order.prepare_time_interval %></td>
+        <td><%= stage_order.cleanup_time_interval.empty? ? "未回答" : stage_order.cleanup_time_interval %></td>
+        <th><%= stage_order.prepare_start_time.empty? ? "未回答" : stage_order.prepare_start_time %></td>
+        <th><%= stage_order.performance_start_time.empty? ? "未回答" : stage_order.performance_start_time %></td>
+        <th><%= stage_order.performance_end_time.empty? ? "未回答" : stage_order.performance_end_time %></td>
+        <th><%= stage_order.cleanup_end_time.empty? ? "未回答" : stage_order.cleanup_end_time %></td>
+
         <td><%= stage_order.stage_first ? stage_order.kibou1 : "未回答" %></td>
         <td><%= stage_order.stage_second ? stage_order.kibou2 : "未回答" %></td>
         <td>

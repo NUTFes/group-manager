@@ -14,12 +14,20 @@
   <dd><%= @stage_order.kibou1 %></dd>
   <dt><strong><%= model_class.human_attribute_name(:stage_second) %>:</strong></dt>
   <dd><%= @stage_order.kibou2 %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:time_point_start) %>:</strong></dt>
-  <dd><%= @stage_order.time_point_start %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:time_point_end) %>:</strong></dt>
-  <dd><%= @stage_order.time_point_end %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:time_interval) %>:</strong></dt>
-  <dd><%= @stage_order.time_interval %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:use_time_interval) %>:</strong></dt>
+  <dd><%= @stage_order.use_time_interval %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:prepare_time_interval) %>:</strong></dt>
+  <dd><%= @stage_order.prepare_time_interval %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cleanup_time_interval) %>:</strong></dt>
+  <dd><%= @stage_order.cleanup_time_interval %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:prepare_start_time) %>:</strong></dt>
+  <dd><%= @stage_order.prepare_start_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:performance_start_time) %>:</strong></dt>
+  <dd><%= @stage_order.performance_start_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:performance_end_time) %>:</strong></dt>
+  <dd><%= @stage_order.performance_end_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cleanup_end_time) %>:</strong></dt>
+  <dd><%= @stage_order.cleanup_end_time %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
