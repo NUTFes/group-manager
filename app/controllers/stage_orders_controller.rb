@@ -75,22 +75,27 @@ class StageOrdersController < GroupBase
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stage_order_params
-      params.require(:stage_order).permit(:group_id, :is_sunny, :fes_date_id, :stage_first, :stage_second, :time_point_start, :time_point_end, :time_interval)
+      params.require(:stage_order).permit(:group_id, :is_sunny, :fes_date_id, :stage_first, :stage_second, :use_time_interval, :prepare_time_interval, :cleanup_time_interval, :prepare_start_time, :performance_start_time, :performance_end_time, :cleanup_end_time)
     end
 
     # 時刻入力の選択肢生成
     def set_time_params
-      @time_point = [["", ""]] 
+      @time_points = [["", ""]]
       (8..21).each do |h|
-          %w(00 15 30 45).each do |m|
-            @time_point.push ["#{"%02d" % h}:#{m}","#{"%02d" % h}:#{m}"]
-          end
+        %w(00 15 30 45).each do |m|
+          @time_points.push ["#{"%02d" % h}:#{m}","#{"%02d" % h}:#{m}"]
+        end
       end
-
-      @time_interval = [["", ""],
-                       ["30m", "30m"],
-                       ["1h", "1h"],
-                       ["1h30m", "1h30m"],
-                       ["2h", "2h"]] 
+      @time_intervals = [["", ""],
+                        ["0分", "0分"],
+                        ["5分", "5分"],
+                        ["10分", "10分"],
+                        ["15分", "15分"],
+                        ["20分", "20分"]]
+      @use_time_intervals = [["", ""],
+                             ["30分", "30分"],
+                             ["1時間", "1時間"],
+                             ["1時間30分", "1時間30分"],
+                             ["2時間", "2時間"]]
     end
 end
