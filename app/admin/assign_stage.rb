@@ -17,15 +17,15 @@ ActiveAdmin.register AssignStage do
       as.stage_order.is_sunny ? "晴天時" : "雨天時"
     end
     column :order_time_start do |as|
-      as.stage_order.time_point_start
+      as.stage_order.prepare_start_time
     end
 
     column :order_time_end do |as|
-      as.stage_order.time_point_end
+      as.stage_order.cleanup_end_time
     end
 
     column :order_time_interval do |as|
-      as.stage_order.time_interval
+      as.stage_order.use_time_interval
     end
 
     column :stage
@@ -44,9 +44,13 @@ ActiveAdmin.register AssignStage do
       li "グループ: #{order.group}"
       li "希望場所1 : #{order.stage_first ?  stages.find(order.stage_first)  : message}"
       li "希望場所2 : #{order.stage_second ? stages.find(order.stage_second) : message}"
-      li "希望開始時間 : #{order.time_point_start ? order.time_point_start : message}"
-      li "希望終了時間 : #{order.time_point_end ? order.time_point_end : message}"
-      li "希望時間幅 : #{order.time_interval ? order.time_interval : message}"
+      li "希望使用時間 : #{order.use_time_interval ? order.use_time_interval : message}"
+      li "希望準備時間 : #{order.prepare_time_interval ? order.prepare_time_interval : message}"
+      li "希望片付け時間 : #{order.cleanup_time_interval ? order.cleanup_time_interval : message}"
+      li "希望準備開始時刻 : #{order.prepare_start_time ? order.prepare_start_time : message}"
+      li "希望公演開始時刻 : #{order.performance_start_time ? order.performance_start_time : message}"
+      li "希望公演終了時刻 : #{order.performance_end_time ? order.performance_end_time : message}"
+      li "希望片付け終了時刻 : #{order.cleanup_end_time ? order.cleanup_end_time : message}"
     end
 
     f.inputs '団体のステージ場所&時間決定' do
