@@ -60,8 +60,8 @@ class Group < ActiveRecord::Base
 
   def init_stage_order # StageOrderのレコードが無ければ登録
     return unless group_category_id == 3 
-    this_year_first_date = FesDate.where(fes_year_id: FesYear.this_year).where(days_num: 1).first.id
-    this_year_second_date = FesDate.where(fes_year_id: FesYear.this_year).where(days_num: 2).first.id
+    this_year_first_date = FesDate.where(fes_year_id: FesYear.this_year, days_num: 1).first.id
+    this_year_second_date = FesDate.where(fes_year_id: FesYear.this_year, days_num: 2).first.id
     # ステージ企画でなければ戻る
     # 1日目，晴れ
     order = StageOrder.new( group_id: id, fes_date_id: this_year_first_date , is_sunny: true, use_time_interval: '未回答', prepare_time_interval: '未回答', cleanup_time_interval: '未回答', prepare_start_time: '未回答', performance_start_time: '未回答', performance_end_time: '未回答', cleanup_end_time: '未回答')
