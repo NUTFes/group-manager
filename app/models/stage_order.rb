@@ -55,7 +55,7 @@ class StageOrder < ActiveRecord::Base
       errors.add( :performance_end_time, "入力してください" )
       errors.add( :cleanup_end_time, "入力してください" )
     end
-    # 時間指定ありと時間指定なしのどちらかを入力しなければならない
+    # 時刻指定ありと時刻指定なしのどちらかを入力しなければならない
     if is_any_intervals & is_any_times
       errors.add( :use_time_interval, "どちらかのみ入力してください" )
       errors.add( :prepare_time_interval, "どちらかのみ入力してください" )
@@ -65,13 +65,13 @@ class StageOrder < ActiveRecord::Base
       errors.add( :performance_end_time, "どちらかのみ入力してください" )
       errors.add( :cleanup_end_time, "どちらかのみ入力してください" )
     end
-    # 時間指定なしの場合の未完成の回答
+    # 時刻指定なしの場合の未完成の回答
     if is_any_intervals & !is_all_intervals
       errors.add( :use_time_interval, "全て入力してください" )
       errors.add( :prepare_time_interval, "全て入力してください" )
       errors.add( :cleanup_time_interval, "全て入力してください" )
     end
-    # 時間指定ありの場合の未完成の回答
+    # 時刻指定ありの場合の未完成の回答
     if is_any_times & !is_all_times
       errors.add( :prepare_start_time, "全て入力してください" )
       errors.add( :performance_start_time, "全て入力してください" )
@@ -79,7 +79,7 @@ class StageOrder < ActiveRecord::Base
       errors.add( :cleanup_end_time, "全て入力してください" )
     end
 
-    # 時間指定なしの場合
+    # 時刻指定なしの場合
     if is_all_intervals
       # 入力された時間幅の文字列(ex. 5分)を数値にマッピング
       case use_time_interval
@@ -110,7 +110,7 @@ class StageOrder < ActiveRecord::Base
       end
     end
 
-    # 時間指定ありの場合
+    # 時刻指定ありの場合
     if is_all_times
       # 入力された時刻の文字列(ex. 08:30)をパース
       prepare_start_tod = Tod::TimeOfDay.try_parse(prepare_start_time)
