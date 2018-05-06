@@ -8,6 +8,7 @@
     vertical-align: middle;
     width: 100%;
     table-layout: fixed;
+    word-wrap:break-word;
   }
   caption, th, td {
     text-align: center;
@@ -20,37 +21,37 @@
     page-break-after: always;
   }
 </style>
+
 <div>
-<table>
+<table align='center'>
   <tbody>
     <tr>
-      <td rowspan="2">グループ名</td>
-      <td>代表者名</td>
-      <td>代表者電話番号</td>
-      <td>代表者メールアドレス</td>
-    </tr>
-    <tr>
-      <td>副代表者名</td>
-      <td>副代表者電話番号</td>
-      <td>副代表者メールアドレス</td>
+      <td width="17%">団体名</td>
+      <td width="15%">役職</td>
+      <td width="20%">氏名</td>
+      <td>電話番号</td>
+      <td>メールアドレス</td>
     </tr>
   </tbody>
-  <% @groups.each do |group| %>
-    <tbody>
-      <tr>
-        <td rowspan="#{1+SubRep.where(group_id:group_id).length}"></td>
-        <td><%= UserDetail.where(user_id:group.user_id).first.name_ja %></td>
-        <td><%= UserDetail.where(user_id:group.user_id).first.tel %></td>
-        <td><%= User.where(id:group.user_id).first.email %></td>
-      </tr>
-      <tr>
-        <%= SubRep.where(group_id:group.id) do |subrep| %>
-        <td><%= subrep.name_ja %></td>
-        <td><%= subrep.tel %></td>
-        <td><%= subrep.email %></td>
-        <% end %>
-      </tr>
-    <tbody>
+  <%= @groups.each do |group| %>
+  <%= row_span =  get_subrep_by_group(group.id).try(:length) %>
+  <tbody>
+    <tr>
+      <td rowspan= "<%= 1 + row_span %>" ><%= group.name %></td>
+      <td>代表者</td>
+      <td><%= get_user_detail_by_group(group.user_id).first.name_ja %></td>
+      <td><%= get_user_detail_by_group(group.user_id).first.tel %></td>
+      <td><%= User.where(id:group.user_id).first.email %></td>
+    </tr>
+    <tr>
+      <td rowspan="<%= row_span %>">副代表者</td>
+  <%= get_subrep_by_group(group.id).each do |subrep| %>
+      <td><%= subrep.name_ja %></td>
+      <td><%= subrep.tel %></td>
+      <td><%= subrep.email %></td>
+    </tr>
   <% end %>
-  </table>
+  </tbody>
+  <% end %>
+</table>
 </div>
