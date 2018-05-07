@@ -33,8 +33,8 @@
       <td>メールアドレス</td>
     </tr>
   </tbody>
-  <%= @groups.each do |group| %>
-  <%= row_span =  get_subrep_by_group(group.id).try(:length) %>
+  <% @groups.each do |group| %>
+  <% row_span =  get_subrep_by_group(group.id).try(:length) %>
   <tbody>
     <tr>
       <td rowspan= "<%= 1 + row_span %>" ><%= group.name %></td>
@@ -45,7 +45,7 @@
     </tr>
     <tr>
       <td rowspan="<%= row_span %>">副代表者</td>
-  <%= get_subrep_by_group(group.id).each do |subrep| %>
+  <% get_subrep_by_group(group.id).each do |subrep| %>
       <td><%= subrep.name_ja %></td>
       <td><%= subrep.tel %></td>
       <td><%= subrep.email %></td>
