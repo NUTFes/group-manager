@@ -7,7 +7,7 @@ class StageOrder < ActiveRecord::Base
   validates :group_id, :fes_date_id, presence: true
   validates :group_id, :uniqueness => {:scope => [:fes_date_id, :is_sunny] } # 日付と天候でユニーク
   validate :select_different_stage
-  validate :time_is_only_selected, :start_to_end
+  validate :is_correct_inputs
 
 
   def tenki
@@ -34,41 +34,106 @@ class StageOrder < ActiveRecord::Base
     return Stage.find( stage_second )
   end
 
-  def time_is_only_selected
-    if time_point_start == "未回答" && time_point_end == "未回答" && time_interval == "未回答" # レコード生成時のValidation回避
+  def is_correct_inputs
+    # レコード生成時のValidation回避
+    if use_time_interval == '未回答' && prepare_time_interval == '未回答' && cleanup_time_interval == '未回答' && prepare_start_time == '未回答' && performance_start_time == '未回答' && performance_end_time == '未回答' && cleanup_end_time == '未回答'
       return
     end
-    if time_point_start.blank? & time_point_end.blank? & time_interval.blank?
-      errors.add( :time_point_start, "入力が必要です" )
-      errors.add( :time_point_end, "入力が必要です" )
-      errors.add( :time_interval, "入力が必要です" )
+    # 論理式
+    is_any_intervals = (use_time_interval.present? | prepare_time_interval.present? | cleanup_time_interval.present?)
+    is_all_intervals = (use_time_interval.present? & prepare_time_interval.present? & cleanup_time_interval.present? )
+    is_any_times = (prepare_start_time.present? | performance_start_time.present? | performance_end_time.present? | cleanup_end_time.present?)
+    is_all_times = (prepare_start_time.present? & performance_start_time.present? & performance_end_time.present? & cleanup_end_time.present?)
+
+    # 全て未回答
+    if !is_any_intervals && !is_any_times
+      errors.add( :use_time_interval, "入力してください" )
+      errors.add( :prepare_time_interval, "入力してください" )
+      errors.add( :cleanup_time_interval, "入力してください" )
+      errors.add( :prepare_start_time, "入力してください" )
+      errors.add( :performance_start_time, "入力してください" )
+      errors.add( :performance_end_time, "入力してください" )
+      errors.add( :cleanup_end_time, "入力してください" )
     end
-    if ( time_point_start? | time_point_end? ) & time_interval?
-      errors.add( :time_point_start, "どちらかのみ入力してください" )
-      errors.add( :time_point_end, "どちらかのみ入力してください" )
-      errors.add( :time_interval, "どちらかのみ入力してください" )
+    # 時刻指定ありと時刻指定なしのどちらかを入力しなければならない
+    if is_any_intervals & is_any_times
+      errors.add( :use_time_interval, "どちらかのみ入力してください" )
+      errors.add( :prepare_time_interval, "どちらかのみ入力してください" )
+      errors.add( :cleanup_time_interval, "どちらかのみ入力してください" )
+      errors.add( :prepare_start_time, "どちらかのみ入力してください" )
+      errors.add( :performance_start_time, "どちらかのみ入力してください" )
+      errors.add( :performance_end_time, "どちらかのみ入力してください" )
+      errors.add( :cleanup_end_time, "どちらかのみ入力してください" )
     end
-    if time_point_start? & time_point_end.blank?
-      errors.add( :time_point_end, "入力が必要です" )
+    # 時刻指定なしの場合の未完成の回答
+    if is_any_intervals & !is_all_intervals
+      errors.add( :use_time_interval, "全て入力してください" )
+      errors.add( :prepare_time_interval, "全て入力してください" )
+      errors.add( :cleanup_time_interval, "全て入力してください" )
     end
-    if time_point_start.blank? & time_point_end?
-      errors.add( :time_point_start, "入力が必要です" )
+    # 時刻指定ありの場合の未完成の回答
+    if is_any_times & !is_all_times
+      errors.add( :prepare_start_time, "全て入力してください" )
+      errors.add( :performance_start_time, "全て入力してください" )
+      errors.add( :performance_end_time, "全て入力してください" )
+      errors.add( :cleanup_end_time, "全て入力してください" )
+    end
+
+    # 時刻指定なしの場合
+    if is_all_intervals
+      # 入力された時間幅の文字列(ex. 5分)を数値にマッピング
+      case use_time_interval
+        when "30分" then use_time = 30
+        when "1時間" then use_time = 60
+        when "1時間30分" then use_time = 90
+        when "2時間" then use_time = 120
+      end
+      case prepare_time_interval
+        when "0分" then prepare_time = 0
+        when "5分" then prepare_time = 5
+        when "10分" then prepare_time = 10
+        when "15分" then prepare_time = 15
+        when "20分" then prepare_time = 20
+      end
+      case cleanup_time_interval
+        when "0分" then cleanup_time = 0
+        when "5分" then cleanup_time = 5
+        when "10分" then cleanup_time = 10
+        when "15分" then cleanup_time = 15
+        when "20分" then cleanup_time = 20
+      end
+      # 準備・片付け時間の合計が使用時間に満たない場合
+      if prepare_time + cleanup_time >= use_time
+        errors.add( :use_time_interval, "不正な値です" )
+        errors.add( :prepare_time_interval, "不正な値です" )
+        errors.add( :cleanup_time_interval, "不正な値です" )
+      end
+    end
+
+    # 時刻指定ありの場合
+    if is_all_times
+      # 入力された時刻の文字列(ex. 08:30)をパース
+      prepare_start_tod = Tod::TimeOfDay.try_parse(prepare_start_time)
+      perform_start_tod = Tod::TimeOfDay.try_parse(performance_start_time)
+      perform_end_tod = Tod::TimeOfDay.try_parse(performance_end_time)
+      cleanup_end_tod = Tod::TimeOfDay.try_parse(cleanup_end_time)
+      # 準備開始から片付け終了までの時間
+      all_interval = cleanup_end_tod - prepare_start_tod
+      # 時刻の大小関係がおかしい場合
+      if (prepare_start_tod > perform_start_tod || perform_start_tod >= perform_end_tod || perform_end_tod > cleanup_end_tod)
+        errors.add( :prepare_start_time, "不正な値です" )
+        errors.add( :performance_start_time, "不正な値です" )
+        errors.add( :performance_end_time, "不正な値です" )
+        errors.add( :cleanup_end_time, "不正な値です" )
+      end
+      # 全体時間が2時間より長い場合
+      if all_interval > Tod::TimeOfDay.parse("02:00:00")
+        errors.add( :prepare_start_time, "最大利用時間は2時間までです" )
+        errors.add( :performance_start_time, "最大利用時間は2時間までです" )
+        errors.add( :performance_end_time, "最大利用時間は2時間までです" )
+        errors.add( :cleanup_end_time, "最大利用時間は2時間までです" )
+      end
     end
   end
 
-  def start_to_end
-    if ( time_point_start.blank? | time_point_end.blank? ) || ( time_point_start == "未回答" && time_point_end == "未回答" )
-      return
-    end
-    if time_point_start.split(":")[0].to_i() == time_point_end.split(":")[0].to_i() 
-      if time_point_start.split(":")[1].to_i() >= time_point_end.split(":")[1].to_i()
-        errors.add( :time_point_start, "不正な値です" )
-        errors.add( :time_point_end, "不正な値です" )
-      end
-    end
-    if time_point_start.split(":")[0].to_i() > time_point_end.split(":")[0].to_i() 
-        errors.add( :time_point_start, "不正な値です" )
-        errors.add( :time_point_end, "不正な値です" )
-    end
-  end
 end

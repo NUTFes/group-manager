@@ -89,3 +89,6 @@ gem 'rails_12factor', group: :production
 
 # メンテナンスページを表示するGem
 gem 'turnout'
+
+# 時刻を扱いやすくするGem
+gem 'tod'

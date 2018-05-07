@@ -65,9 +65,13 @@ ja:
           loud_sound: 大きな音を出す
           is_sunny: 天候
           fes_date_id: 開催日
-          time_point_start: 開始時刻
-          time_point_end: 終了時刻
-          time_interval: 使用時間幅
+          use_time_interval: 利用時間
+          prepare_time_interval: 準備時間
+          cleanup_time_interval: 片付け時間
+          prepare_start_time: 準備開始時刻
+          performance_start_time: 公演開始時刻
+          performance_end_time: 公演終了時刻
+          cleanup_end_time: 片付け終了時刻
         place_order:
           group_name: 運営団体の名称
           first: 第一希望

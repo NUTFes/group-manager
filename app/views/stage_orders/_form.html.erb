@@ -17,30 +17,77 @@
 
   <div class="col-sm-3">
   </div>
-  <p class="text-muted col-sm-9">
-  時間は次のいずれかの方法で入力してください<br>
-  ・開始時刻と終了時刻を入力する<br>
-  ・使用時間幅を入力する
-  </p>
-  <%= f.input :time_point_start,
-    as: :select, 
-    collection: @time_point,
-    selected: @stage_order.time_point_start
+  <div class="col-sm-9">
+    <p>どちらかを選択してください</p>
+    <input type="radio" name="radio" id="not_specify" checked> <label for="not_specify">利用する時間幅を入力する</label><br>
+    <input type="radio" name="radio" id="specify"> <label for="specify">利用開始時刻から利用終了時刻まで入力する</label><br>
+    <p></p>
+  </div>
+
+  <div id='show-intervals'>
+  <%= f.input :use_time_interval,
+    as: :select,
+    collection: @use_time_intervals,
+    selected: @stage_order.use_time_interval
+  %>  
+
+  <%= f.input :prepare_time_interval,
+    as: :select,
+    collection: @time_intervals,
+    selected: @stage_order.prepare_time_interval
   %>
-  <%= f.input :time_point_end,
-    as: :select, 
-    collection: @time_point,
-    selected: @stage_order.time_point_end,
-    hint: t(".hint_time_point")
-  %>
-  <%= f.input :time_interval,
-    as: :select, 
-    collection: @time_interval,
-    selected: @stage_order.time_interval,
+
+  <%= f.input :cleanup_time_interval,
+    as: :select,
+    collection: @time_intervals,
+    selected: @stage_order.cleanup_time_interval,
     hint: t(".hint_time_interval")
   %>
+  </div>
+
+  <div id='show-times'>
+  <%= f.input :prepare_start_time,
+    as: :select,
+    collection: @time_points,
+    selected: @stage_order.prepare_start_time
+  %>
+
+  <%= f.input :performance_start_time,
+    as: :select,
+    collection: @time_points,
+    selected: @stage_order.performance_start_time
+  %>
+
+  <%= f.input :performance_end_time,
+    as: :select,
+    collection: @time_points,
+    selected: @stage_order.performance_end_time
+  %>
+
+  <%= f.input :cleanup_end_time,
+    as: :select,
+    collection: @time_points,
+    selected: @stage_order.cleanup_end_time,
+    hint: t(".hint_time_point")
+  %>
+  </div>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 stage_orders_path, :class => 'btn btn-default' %>
+                
+  <!-- radioの状態によって表示するフォームを切り替える -->
+  <script type="text/javascript">
+  $(document).ready(function () {
+    $('#show-times').css("display", "none");
+    $('#not_specify').click(function () {
+      $("#show-intervals").toggle(true);
+      $("#show-times").toggle(false);
+    });
+    $('#specify').click(function () {
+      $("#show-times").toggle(true);
+      $("#show-intervals").toggle(false);
+    });
+  });
+  </script>
 <% end %>
