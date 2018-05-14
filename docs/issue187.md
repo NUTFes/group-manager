@@ -1,10 +1,11 @@
 # issue187
 管理者ページの参加団体のラベルを英語表記から日本語表記に変更
 
-##変更点
+## 変更点
 config/locales/01_model/ja.yml  
 attributes:　　group:　の変更
-```
+
+```diff
 group:
   name: 運営団体の名称
       group_category_id: 参加形式
@@ -23,7 +24,7 @@ group_project_name:
 ```
 
 app/admin/group.rb 内での変更
-```
+```diff
 show do
     attributes_table do
       row :id
