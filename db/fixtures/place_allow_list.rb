@@ -63,16 +63,36 @@ PlaceAllowList.seed( :id,
   { id: 58,  place_id: 13, group_category_id: 5, enable: true }, #講義棟部屋B
   { id: 59,  place_id: 14, group_category_id: 5, enable: true }, #マルチメディア
   { id: 60,  place_id: 15, group_category_id: 5, enable: true }, #グラウンド
-
-  #規定外の場所の追加
+  
+  # 研究室公開
+  { id: 69,  place_id: 1,  group_category_id: 6, enable: true }, #事務棟エリア
+  { id: 70,  place_id: 2,  group_category_id: 6, enable: true }, #図書館エリア
+  { id: 71,  place_id: 3,  group_category_id: 6, enable: true }, #福利棟エリア
+  { id: 72,  place_id: 4,  group_category_id: 6, enable: true }, #ステージエリア
+  { id: 73,  place_id: 5,  group_category_id: 6, enable: true }, #体育館エリア
+  { id: 74,  place_id: 6,  group_category_id: 6, enable: true }, #セコムホール
+  { id: 75,  place_id: 7,  group_category_id: 6, enable: true }, #電気棟204
+  { id: 76,  place_id: 8,  group_category_id: 6, enable: true }, #電気棟206
+  { id: 77,  place_id: 9,  group_category_id: 6, enable: true }, #電気棟208
+  { id: 78,  place_id: 10, group_category_id: 6, enable: true }, #電気棟212
+  { id: 79,  place_id: 11, group_category_id: 6, enable: true }, #電気棟310
+  { id: 80,  place_id: 12, group_category_id: 6, enable: true }, #講義棟部屋A
+  { id: 81,  place_id: 13, group_category_id: 6, enable: true }, #講義棟部屋B
+  { id: 82,  place_id: 14, group_category_id: 6, enable: true }, #マルチメディア
+  { id: 83,  place_id: 15, group_category_id: 6, enable: true }, #グラウンド
+   
+  # 規定外の場所の追加
   { id: 61,  place_id: 16, group_category_id: 1, enable: true }, # 模擬店(食品販売)
   { id: 62,  place_id: 16, group_category_id: 2, enable: false}, # 模擬店(物品販売)
   { id: 63,  place_id: 16, group_category_id: 4, enable: true }, # 展示
   { id: 64,  place_id: 16, group_category_id: 5, enable: true }, # その他
+  { id: 84,  place_id: 16, group_category_id: 6, enable: true }, # 研究室公開
 
   # 機械棟エリアの追加
   { id: 65,  place_id: 17, group_category_id: 1, enable: true }, # 模擬店(食品販売)
   { id: 66,  place_id: 17, group_category_id: 2, enable: false}, # 模擬店(物品販売)
   { id: 67,  place_id: 17, group_category_id: 4, enable: true }, # 展示
   { id: 68,  place_id: 17, group_category_id: 5, enable: true }, # その他
+  { id: 85,  place_id: 17, group_category_id: 6, enable: true }, # 研究室公開
+ 
 )
