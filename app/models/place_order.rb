@@ -20,7 +20,7 @@ class PlaceOrder < ActiveRecord::Base
 
   def write_remark
     return if first.nil? & second.nil? & third.nil? # 全てnil(初期値)なら無効
-    if [first, second, third].include?(16) & remark.empty?
+    if [first, second, third].include?(15) & remark.empty?
       errors.add( :remark, "備考欄に記述してください。")
     end
   end
