@@ -29,7 +29,15 @@ ja:
         group:
           name: 運営団体の名称
           group_category: 参加形式
+          user_name: 氏名
+          user_id: Email
+          user_tel: 電話番号
+          subrep_name: 副代表 氏名
+          subrep_tel: 副代表 電話番号
           activity: 主な活動内容
+          created_at: 作成日
+          updated_at: 更新日
+          fes_year_id: 年度
         group_project_name:
           group: 運営団体の名称
           project_name: 企画名
