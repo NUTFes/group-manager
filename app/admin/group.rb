@@ -36,7 +36,7 @@ ActiveAdmin.register Group do
     attributes_table do
       row :id
       row :name
-      row :group_category_id
+      row :group_category
       row :user_name do |group|
         group.user.user_detail.name_ja
       end
