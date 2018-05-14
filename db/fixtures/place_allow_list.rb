@@ -71,14 +71,14 @@ PlaceAllowList.seed( :id,
   { id: 72,  place_id: 4,  group_category_id: 6, enable: true }, #ステージエリア
   { id: 73,  place_id: 5,  group_category_id: 6, enable: true }, #体育館エリア
   { id: 74,  place_id: 6,  group_category_id: 6, enable: true }, #セコムホール
-  { id: 75,  place_id: 7,  group_category_id: 6, enable: true }, #電気棟204
-  { id: 76,  place_id: 8,  group_category_id: 6, enable: true }, #電気棟206
-  { id: 77,  place_id: 9,  group_category_id: 6, enable: true }, #電気棟208
-  { id: 78,  place_id: 10, group_category_id: 6, enable: true }, #電気棟212
-  { id: 79,  place_id: 11, group_category_id: 6, enable: true }, #電気棟310
+  { id: 75,  place_id: 7,  group_category_id: 6, enable: false }, #電気棟204
+  { id: 76,  place_id: 8,  group_category_id: 6, enable: false }, #電気棟206
+  { id: 77,  place_id: 9,  group_category_id: 6, enable: false }, #電気棟208
+  { id: 78,  place_id: 10, group_category_id: 6, enable: false }, #電気棟212
+  { id: 79,  place_id: 11, group_category_id: 6, enable: false }, #電気棟310
   { id: 80,  place_id: 12, group_category_id: 6, enable: true }, #講義棟部屋A
   { id: 81,  place_id: 13, group_category_id: 6, enable: true }, #講義棟部屋B
-  { id: 82,  place_id: 14, group_category_id: 6, enable: true }, #マルチメディア
+  { id: 82,  place_id: 14, group_category_id: 6, enable: false }, #マルチメディア
   { id: 83,  place_id: 15, group_category_id: 6, enable: true }, #グラウンド
    
   # 規定外の場所の追加
