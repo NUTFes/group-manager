@@ -18,7 +18,7 @@
   
   <%= f.input :remark,
     input_html: { value: @place_order.remark },
-    hint: t("「規定外の場所」の場合に備考に記載してください")
+    hint: t("希望理由等があれば記載してください．また「規定外の場所」の場合に備考に記載してください")
   %>
   <%= error_span(@place_order[:remark]) %>
 
