@@ -1,6 +1,6 @@
 ActiveAdmin.register PowerOrder do
 
-  permit_params :group_id, :item, :power, :manufacturer, :model
+  permit_params :group_id, :item, :power, :manufacturer, :model, :item_url
   belongs_to :group, optional: true
 
   index do
@@ -11,6 +11,7 @@ ActiveAdmin.register PowerOrder do
     column :power
     column :manufacturer
     column :model
+    column :item_url
     column :updated_at
     actions
   end
@@ -24,6 +25,7 @@ ActiveAdmin.register PowerOrder do
     column :power
     column :manufacturer
     column :model
+    column :item_url
   end
 
   preserve_default_filters!

@@ -62,6 +62,7 @@ ja:
           power: 電力[W]
           manufacturer: メーカ
           model: 型番
+          item_url: 使用機器の製品URL
         stage_order:
           group_name: 運営団体の名称
           stage_first: 場所(第一希望)
