@@ -18,6 +18,11 @@
   %>
   <%= error_span(@power_order[:model]) %>
 
+  <%=f.input :item_url,
+    hint: t(".hint_item_url")
+  %>
+  <%= error_span(@power_order[:item_url]) %>
+
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 power_orders_path, :class => 'btn btn-default' %>
