@@ -25,7 +25,8 @@ class PowerOrder < ActiveRecord::Base
   } 
 
   def is_correct_url
-    return if item_url.match(%r(\Ahttps?://[\w/:%#\$&\?\(\)~\.=\+\-]+\z))
+    # 正しいURLか'なし'の場合を許可
+    return if item_url.match(%r(\Ahttps?://[\w/:%#\$&\?\(\)~\.=\+\-]+\z)) or item_url == 'なし'
     errors.add( :item_url, "正しいURLを入力してください" )
   end
 
