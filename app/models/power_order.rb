@@ -2,7 +2,8 @@ class PowerOrder < ActiveRecord::Base
   belongs_to :group
   has_one :fes_year, through: :group
 
-  validates :group_id, :item, :power, :manufacturer, :model, presence: true # 必須項目
+  validates :group_id, :item, :power, :manufacturer, :model, :item_url, presence: true # 必須項目
+  validate :is_correct_url
 
   scope :year, -> (year) {joins(:group).where(groups: {fes_year_id: year})}
 
@@ -15,13 +16,18 @@ class PowerOrder < ActiveRecord::Base
   end
 
 
-  validates :power,     if: :stage?, numericality: { 
+  validates :power, if: :stage?, numericality: {
     only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 2500,
   }
 
-  validates :power, unless: :stage?, numericality: { 
+  validates :power, unless: :stage?, numericality: {
     only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 1000,
   } 
+
+  def is_correct_url
+    return if item_url.match(%r(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+))
+    errors.add( :item_url, "正しいURLを入力してください" )
+  end
 
   validates_with PowerOrderCreateValidator, on: :create
   validates_with PowerOrderUpdateValidator, on: :update
