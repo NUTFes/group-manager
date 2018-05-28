@@ -47,6 +47,8 @@ ActiveAdmin.register PlaceOrder do
         order.third  ? Place.find(order.third)  : "未回答"
       end
       row :remark
+      row :created_at
+      row :updated_at
     end
   end
 
