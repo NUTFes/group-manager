@@ -41,7 +41,7 @@ ActiveAdmin.register Group do
         group.user.user_detail.name_ja
       end
 
-      row :user_id
+      row :user
       row :user_tel do |group|
         group.user.user_detail.tel
       end
@@ -54,7 +54,7 @@ ActiveAdmin.register Group do
       row :activity
       row :created_at
       row :updated_at
-      row :fes_year_id
+      row :fes_year
     end
     active_admin_comments
   end
