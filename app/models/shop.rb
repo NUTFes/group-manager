@@ -28,12 +28,12 @@ class Shop < ActiveRecord::Base
 
   # 休日を表示
   def closed_days
-    days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'holiday']
+    days = { sun: '日曜', mon: '月曜', tue: '火曜', wed: '水曜', thu: '木曜', fri: '金曜', sat: '土曜', holiday: '祝日'}
     hash_data = self.attributes # ハッシュへ
     closed_days = Array.new
-    days.each do |day|
-      if hash_data[ 'is_closed_' + day]
-        closed_days.push( day )
+    days.each do |day, day_ja|
+      if hash_data[ 'is_closed_' + day.to_s]
+        closed_days.push( day_ja.to_s )
       end
     end
     return closed_days.length == 0 ? 'なし' : closed_days.join(', ')
