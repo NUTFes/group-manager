@@ -248,5 +248,7 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
 
+  # デフォルトでassociationが設定されたモデルをfilterに含めない
+  config.include_default_association_filters = false
 
 end
