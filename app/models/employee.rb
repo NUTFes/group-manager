@@ -7,8 +7,8 @@ class Employee < ActiveRecord::Base
   # before_save :give_duplication
   # before_destroy :remove_duplication # レコードのdelete後に実行
 
-  validates_presence_of :group_id, :student_id, :name, :employee_category_id
-  validates_numericality_of :group_id, :student_id, :employee_category_id, only_integer: true
+  validates_presence_of :group_id, :student_id, :name
+  validates_numericality_of :group_id, :student_id, only_integer: true
 
   validates :student_id, format: { with: /(\A\d{8}+\z)/i }
 

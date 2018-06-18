@@ -10,8 +10,6 @@
   <dd><%= @employee.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:student_id) %>:</strong></dt>
   <dd><%= @employee.student_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:employee_category) %>:</strong></dt>
-  <dd><%= @employee.employee_category %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

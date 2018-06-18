@@ -9,9 +9,6 @@
   <%= f.input :student_id, hint: t(".hint_studentid") %>
   <%= error_span(@employee[:student_id]) %>
 
-  <%= f.association :employee_category, hint: t(".hint_category") %>
-  <%= error_span(@employee[:employee_category_id]) %>
-
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 employees_path, :class => 'btn btn-default' %>
