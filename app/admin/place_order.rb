@@ -33,6 +33,25 @@ ActiveAdmin.register PlaceOrder do
     column :remark
   end
 
+  show do
+    attributes_table do
+      row :id
+      row :group
+      row :first do |order|
+        order.first  ? Place.find(order.first)  : "未回答"
+      end
+      row :second do |order|
+        order.second ? Place.find(order.second) : "未回答"
+      end
+      row :third do |order|
+        order.third  ? Place.find(order.third)  : "未回答"
+      end
+      row :remark
+      row :created_at
+      row :updated_at
+    end
+  end
+
   preserve_default_filters!
   filter :fes_year
   filter :group_name, as: :string
