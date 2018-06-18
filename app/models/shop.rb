@@ -1,5 +1,6 @@
 class Shop < ActiveRecord::Base
-
+  has_many :purchase_lists, dependent: :destroy 
+  
   validates_presence_of :name, :kana, :tel
   validates_uniqueness_of :name, :kana
 
