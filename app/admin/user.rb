@@ -14,6 +14,7 @@ ActiveAdmin.register User do
   end
 
   filter :email
+  filter :role
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
