@@ -85,6 +85,15 @@ ActiveAdmin.register Group do
 
   preserve_default_filters!
   filter :fes_year
+  filter :group_category
+
+  controller do
+    before_filter only: :index do
+      if params[:commit].blank? && params[:q].blank? && params[:scope].blank? && params[:page].blank?
+        params['q'] = {:fes_year_id_eq => FesYear.this_year.id}
+      end
+    end
+  end
 
   # csvダウンロードアクションを作成
   collection_action :download_group_list, :method => :get do
