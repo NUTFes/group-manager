@@ -25,6 +25,14 @@ ja:
       assign_stage: 使用ステージ
       assign_group_place: 使用場所
       assign_rental_item: 貸出物品の割当
+      comment: コメント
+      fes_date: 開催日
+      fes_year: 開催年
+      group_category: 参加団体カテゴリー
+      place: 場所
+      role: 権限
+      stocker_place: 保管場所
+      user: ユーザ
     attributes:
         group:
           name: 運営団体の名称
