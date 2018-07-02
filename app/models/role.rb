@@ -4,4 +4,8 @@ class Role < ActiveRecord::Base
   validates :name,
     presence: true,  # 必須
     uniqueness: true # 重複不可
+
+  def to_s
+    self.name
+  end
 end

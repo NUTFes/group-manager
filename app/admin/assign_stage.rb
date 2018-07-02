@@ -65,6 +65,17 @@ ActiveAdmin.register AssignStage do
   filter :fes_year
   filter :group_name, as: :string
   filter :group, label: "運営団体", as: :select, collection: proc {Group.active_admin_collection(3)} # 見やすくなるようにGroupを年度順にセパレータ付きで表示
+  filter :stage_order_is_sunny, as: :select, collection: {"晴天時": true, "雨天時": false}
+  filter :stage_order_fes_date_id, as: :select, collection: FesDate.where(fes_year_id: FesYear.this_year)
+  filter :stage_order_stage_first, as: :select, collection: Stage.all
+  filter :stage_order_stage_second, as: :select, collection: Stage.all
+  filter :stage_order_use_time_interval, :as => :select, :collection => StageOrder.use_time_intervals
+  filter :stage_order_prepare_time_interval, :as => :select, :collection => StageOrder.time_intervals
+  filter :stage_order_cleanup_time_interval, :as => :select, :collection => StageOrder.time_intervals
+  filter :stage_order_prepare_start_time, :as => :select, :collection => StageOrder.time_points
+  filter :stage_order_performance_start_time, :as => :select, :collection => StageOrder.time_points
+  filter :stage_order_performance_end_time, :as => :select, :collection => StageOrder.time_points
+  filter :stage_order_cleanup_end_time, :as => :select, :collection => StageOrder.time_points
 
 end
 

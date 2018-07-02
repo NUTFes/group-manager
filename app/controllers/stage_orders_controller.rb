@@ -80,22 +80,8 @@ class StageOrdersController < GroupBase
 
     # 時刻入力の選択肢生成
     def set_time_params
-      @time_points = [["", ""]]
-      (8..21).each do |h|
-        %w(00 15 30 45).each do |m|
-          @time_points.push ["#{"%02d" % h}:#{m}","#{"%02d" % h}:#{m}"]
-        end
-      end
-      @time_intervals = [["", ""],
-                        ["0分", "0分"],
-                        ["5分", "5分"],
-                        ["10分", "10分"],
-                        ["15分", "15分"],
-                        ["20分", "20分"]]
-      @use_time_intervals = [["", ""],
-                             ["30分", "30分"],
-                             ["1時間", "1時間"],
-                             ["1時間30分", "1時間30分"],
-                             ["2時間", "2時間"]]
+      @time_points = StageOrder.time_points
+      @time_intervals = StageOrder.time_intervals
+      @use_time_intervals = StageOrder.use_time_intervals
     end
 end

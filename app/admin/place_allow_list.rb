@@ -30,4 +30,7 @@ ActiveAdmin.register PlaceAllowList do
     f.actions
   end
 
+  filter :place
+  filter :group_category
+
 end
