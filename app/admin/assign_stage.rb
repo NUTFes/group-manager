@@ -77,6 +77,14 @@ ActiveAdmin.register AssignStage do
   filter :stage_order_performance_end_time, :as => :select, :collection => StageOrder.time_points
   filter :stage_order_cleanup_end_time, :as => :select, :collection => StageOrder.time_points
 
+  controller do
+    before_filter only: :index do
+      if params[:commit].blank? && params[:q].blank? && params[:scope].blank? && params[:page].blank?
+        params['q'] = {:fes_year_id_eq => FesYear.this_year.id}
+      end
+    end
+  end
+
 end
 
 def set_time_point

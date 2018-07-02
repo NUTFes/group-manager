@@ -60,4 +60,12 @@ ActiveAdmin.register PlaceOrder do
   filter :second, as: :select, collection: Place.usable_all_places
   filter :third, as: :select, collection: Place.usable_all_places
 
+  controller do
+    before_filter only: :index do
+      if params[:commit].blank? && params[:q].blank? && params[:scope].blank? && params[:page].blank?
+        params['q'] = {:fes_year_id_eq => FesYear.this_year.id}
+      end
+    end
+  end
+
 end

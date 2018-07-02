@@ -34,4 +34,12 @@ ActiveAdmin.register AssignGroupPlace do
   filter :group, label: "運営団体", as: :select, collection: proc {Group.active_admin_collection([1,2,5,4,6])} # 見やすくなるようにGroupを年度順にセパレータ付きで表示
   filter :place, as: :select, collection: Place.usable_all_places
 
+  controller do
+    before_filter only: :index do
+      if params[:commit].blank? && params[:q].blank? && params[:scope].blank? && params[:page].blank?
+        params['q'] = {:fes_year_id_eq => FesYear.this_year.id}
+      end
+    end
+  end
+
 end
