@@ -53,11 +53,11 @@ ActiveAdmin.register StageOrder do
     column :performance_start_time
     column :performance_end_time
     column :cleanup_end_time
-    column("自前の音響機材を使用する") {|order| StageCommonOption.where(group_id: order.group_id).first.own_equipment ? "Yes" : "No" }
-    column("実行委員にBGMをかけるのを依頼する") {|order| StageCommonOption.where(group_id: order.group_id).first.bgm ? "Yes" : "No" }
-    column("実行委員による撮影を許可する") {|order| StageCommonOption.where(group_id: order.group_id).first.camera_permittion ? "Yes" : "No" }
-    column("大きな音を出す") {|order| StageCommonOption.where(group_id: order.group_id).first.loud_sound ? "Yes" : "No" }
-    column("出演内容") {|order| StageCommonOption.where(group_id: order.group_id).first.stage_content }
+    column("自前の音響機材を使用する") {|order| StageCommonOption.where(group_id: order.group_id).first.try(:own_equipment) ? "Yes" : "No" }
+    column("実行委員にBGMをかけるのを依頼する") {|order| StageCommonOption.where(group_id: order.group_id).first.try(:bgm) ? "Yes" : "No" }
+    column("実行委員による撮影を許可する") {|order| StageCommonOption.where(group_id: order.group_id).first.try(:camera_permittion) ? "Yes" : "No" }
+    column("大きな音を出す") {|order| StageCommonOption.where(group_id: order.group_id).first.try(:loud_sound) ? "Yes" : "No" }
+    column("出演内容") {|order| StageCommonOption.where(group_id: order.group_id).first.try(:stage_content) }
   end
 
   form do |f|
