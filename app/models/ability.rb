@@ -52,7 +52,7 @@ class Ability
       cannot [:destroy], RentableItem  # 削除不可，0で対応
       cannot [:create,:destroy], PlaceAllowList #場所の許可に関して編集不可
       cannot [:create, :destroy], ConfigUserPermission  # 作成・削除不可
-      cannot [:create, :destroy], GroupProjectName # 作成・削除不可
+      cannot [:destroy], GroupProjectName # 作成・削除不可
       cannot [:create, :destroy], Stage # 作成・削除不可
       cannot [:create, :destroy], GroupManagerCommonOption # 作成・削除不可
       cannot [:create, :destroy], RentalItemAllowList # 作成・削除不可
