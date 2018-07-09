@@ -16,7 +16,9 @@ ActiveAdmin.register Group do
 
   csv do
     column :id
-    column :fes_year
+    column :fes_year do |group|
+      group.fes_year.to_s
+    end
     column :user do |group|
       group.user.user_detail.name_ja
     end

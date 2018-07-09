@@ -22,9 +22,9 @@ ActiveAdmin.register Employee do
     column :name
     column :student_id
     column :employee_category do |employee|
-      employee.employee_category.name_ja
+      employee.employee_category
     end
-    column :duplication
+    # column :duplication
   end
 
   preserve_default_filters!
