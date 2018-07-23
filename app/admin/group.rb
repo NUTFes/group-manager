@@ -88,6 +88,7 @@ ActiveAdmin.register Group do
   preserve_default_filters!
   filter :fes_year
   filter :group_category
+  filter :user_user_detail_name_ja, as: :string
 
   controller do
     before_filter only: :index do
