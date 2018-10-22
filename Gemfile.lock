@@ -276,6 +276,7 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     wkhtmltopdf (0.1.2)
+    wkhtmltopdf-binary (0.12.4)
     wkhtmltopdf-heroku (2.12.3.0)
     yard (0.9.12)
 
@@ -318,6 +319,7 @@ DEPENDENCIES
   validates_email_format_of
   web-console (~> 2.0)
   wkhtmltopdf
+  wkhtmltopdf-binary
   wkhtmltopdf-heroku
 
 RUBY VERSION
