@@ -8,12 +8,12 @@ class Group < ActiveRecord::Base
   has_many :rental_orders, dependent: :destroy
   has_many :power_orders, dependent: :destroy
   has_many :stage_orders, dependent: :destroy
-  has_many :group_project_names, dependent: :destroy
-  has_many :assign_stages, through: :stage_orders, dependent: :destroy
   has_many :assign_rental_items, through: :rental_orders, dependent: :destroy
   has_one :place_order, dependent: :destroy
   has_one :stage_common_option, dependent: :destroy
   has_one :assign_group_place, through: :place_order, dependent: :destroy
+  has_one  :group_project_name, dependent: :destroy
+  has_many :assign_stages, through: :stage_orders, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :fes_year }
   validates :user, presence: true

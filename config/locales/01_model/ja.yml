@@ -46,7 +46,8 @@ ja:
           created_at: 作成日
           updated_at: 更新日
           fes_year_id: 年度
-        group_project_name:
+          project_name: 企画名
+        group_project_name: 
           group: 運営団体の名称
           project_name: 企画名
         user_detail:
