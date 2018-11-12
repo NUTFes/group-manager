@@ -27,10 +27,10 @@ module StoolTestPagesHelper
   end
 
   def size_calibration(str)
-    if str.length >= 10 then
-      "10px"
+    if str.length >= 8 then
+      "0.7em"
     else
-      "14px"
+      "1em"
     end
   end
 
