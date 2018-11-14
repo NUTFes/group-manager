@@ -15,4 +15,13 @@ class SubRep < ActiveRecord::Base
   validates :tel, format: { with: /(\A\d{3}-\d{4}-\d{4}+\z)|(\A\d{4}-\d{2}-\d{4})+\z/i }
 
   validates :email, :email_format => { :message => '有効なe-mailアドレスを入力してください' }
+
+  # 電話番号が代表者と同じ場合登録することができなくする
+  validate :valid_tel  
+
+  def valid_tel
+    if tel == group.user.user_detail.tel
+      errors.add(:tel,"代表者と副代表者は別にしてください")
+    end
+  end
 end
