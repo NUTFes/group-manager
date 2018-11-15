@@ -25,7 +25,7 @@ class GroupInformationPagesController < ApplicationController
 
     @groups = Group.year(this_year).order(:group_category_id, :name)
     @fes_date = FesDate.where(fes_year_id: this_year)
-    @rentables = RentableItem.year(this_year)
+    @rentables = RentableItem.all
     @assignment_items = AssignRentalItem.year(this_year)
 
     preview_pdf_page('group_information_sheet', "物品持出し表（各団体向け）")

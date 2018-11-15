@@ -23,7 +23,7 @@ class RentalItemPagesController < ApplicationController
   def for_pasting_room_sheet
     this_year = FesYear.this_year()
 
-    @rentables = RentableItem.year(this_year)
+    @rentables = RentableItem.all
     @assignments = AssignRentalItem.year(this_year)
 
     preview_pdf_page('for_pasting_room_sheet', "物品貸出表(各部屋)")
