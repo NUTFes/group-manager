@@ -19,8 +19,6 @@ class RentableItem < ActiveRecord::Base
     ', 残数:' + self.remaining_num.to_s + ')'
   end
 
-  scope :year, -> (year) {joins(:stocker_item).where(stocker_items: {fes_year_id: year})}
-
   def assigned_num
     AssignRentalItem.where(rentable_item_id: self.id).sum(:num)
   end
