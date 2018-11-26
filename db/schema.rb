@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515021230) do
+ActiveRecord::Schema.define(version: 20181022132431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -349,10 +349,8 @@ ActiveRecord::Schema.define(version: 20180515021230) do
     t.integer  "num",              null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "fes_year_id"
   end
 
-  add_index "stocker_items", ["fes_year_id"], name: "index_stocker_items_on_fes_year_id", using: :btree
   add_index "stocker_items", ["rental_item_id"], name: "index_stocker_items_on_rental_item_id", using: :btree
   add_index "stocker_items", ["stocker_place_id"], name: "index_stocker_items_on_stocker_place_id", using: :btree
 
@@ -452,7 +450,6 @@ ActiveRecord::Schema.define(version: 20180515021230) do
   add_foreign_key "stage_common_options", "groups"
   add_foreign_key "stage_orders", "fes_dates"
   add_foreign_key "stage_orders", "groups"
-  add_foreign_key "stocker_items", "fes_years"
   add_foreign_key "stocker_items", "rental_items"
   add_foreign_key "stocker_items", "stocker_places"
   add_foreign_key "sub_reps", "departments"

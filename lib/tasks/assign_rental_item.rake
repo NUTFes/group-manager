@@ -4,7 +4,7 @@ namespace :assign_rental_item do
     # 今年度の希望レコードと貸出可能物品のレコードを取得
     this_year = FesYear.this_year()
     orders = RentalOrder.year(this_year)
-    rentables = RentableItem.year(this_year)
+    rentables = RentableItem.all
     # 全組み合わせにたいして検索．無ければ生成
     orders.each do |order|
       rentables.each do |rentable|

@@ -1,7 +1,7 @@
 class RentableItem < ActiveRecord::Base
   belongs_to :stocker_item
   belongs_to :stocker_place
-  has_many :assign_rental_item
+  has_many :assign_rental_item, dependent: :destroy
 
   validates :stocker_item_id, :stocker_place_id, :max_num, presence: true
   validates :max_num, numericality: {
@@ -18,8 +18,6 @@ class RentableItem < ActiveRecord::Base
     ', 割当可能な総数:' + self.max_num.to_s +
     ', 残数:' + self.remaining_num.to_s + ')'
   end
-
-  scope :year, -> (year) {joins(:stocker_item).where(stocker_items: {fes_year_id: year})}
 
   def assigned_num
     AssignRentalItem.where(rentable_item_id: self.id).sum(:num)

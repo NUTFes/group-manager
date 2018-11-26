@@ -4,7 +4,6 @@ ActiveAdmin.register StockerItem do
   index do
     selectable_column
     id_column
-    column :fes_year
     column :stocker_place
     column :rental_item
     column :num
@@ -12,7 +11,6 @@ ActiveAdmin.register StockerItem do
   end
 
   preserve_default_filters!
-  filter :fes_year
   filter :rental_item
   filter :stocker_place
 
