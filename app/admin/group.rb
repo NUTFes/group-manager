@@ -8,7 +8,7 @@ ActiveAdmin.register Group do
     column :user
     column :name
     column :project_name do |group|
-      group.group_project_name.try(:project_name) 
+      group.group_project_name.try(:project_name)
     end
     column :group_category
     column :activity
