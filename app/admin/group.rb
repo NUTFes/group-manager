@@ -1,6 +1,5 @@
 ActiveAdmin.register Group do
-
-  permit_params :user_id, :name, :group_category_id, :activity, :fes_year_id
+  permit_params :user_id, :name, :group_category_id, :activity, :fes_year_id, :project_name
 
   index do
     selectable_column
@@ -8,6 +7,9 @@ ActiveAdmin.register Group do
     column :fes_year
     column :user
     column :name
+    column :project_name do |group|
+      group.group_project_name.try(:project_name)
+    end
     column :group_category
     column :activity
     column :created_at
