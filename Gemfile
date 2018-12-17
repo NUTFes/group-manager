@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 # ruby version for heroku
-ruby '2.2.0'
+ruby '2.5.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.10'
+gem 'rails', '5.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.21.0'
 # Use SCSS for stylesheets
@@ -67,10 +67,10 @@ gem 'humanize_boolean'
 # bootstrap関連
 # twitter-bootstrap-railsはlessを使うので必要
 gem 'libv8', '3.16.14.19'
-gem 'therubyracer', '0.12.2'
+gem 'therubyracer', '0.12.3'
 # see http://yatta47.hateblo.jp/entry/2017/08/30/205729
 gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '4.0.0'
 
 # PDF生成用
 gem 'pdfkit'
@@ -90,5 +90,3 @@ gem 'rails_12factor', group: :production
 # メンテナンスページを表示するGem
 gem 'turnout'
 
-# 時刻を扱いやすくするGem
-gem 'tod'
