@@ -1,22 +1,14 @@
 <%= simple_form_for @food_product, wrapper: "horizontal_form", :html => { :class => 'form-horizontal' } do |f| %>
 
   <%= f.association :group, collection: @groups, selected: @food_product.group_id %>
-  <%= error_span(@food_product[:group_id]) %>
-
   <%= f.input :name, hint: t(".hint_name") %>
-  <%= error_span(@food_product[:name]) %>
-
   <%= f.input :first_day_num, hint: t(".hint_first_day_num") %>
-  <%= error_span(@food_product[:first_day_num]) %>
   <%= f.input :second_day_num, hint: t(".hint_second_day_num") %>
-  <%= error_span(@food_product[:second_day_num]) %>
-
   <%= f.input :is_cooking,
     hint: t(".hint_is_cooking"),
     collection: [["調理あり", true],["調理なし(提供のみ)", false]],
     as: :radio_buttons
   %>
-  <%= error_span(@food_product[:is_cooking]) %>
 
   <div class="alert alert-dismissible alert-warning">
     <h4>注意!</h4>
@@ -29,8 +21,6 @@
       例3）缶飲料等を開封せず、そのまま提供する場合：調理なし
     </p>
   </div>
-
-  <%= error_span(@food_product[:num]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

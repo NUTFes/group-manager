@@ -49,7 +49,7 @@ ActiveAdmin.register PurchaseList do
   filter :is_fresh
 
   controller do
-    before_filter only: :index do
+    before_action only: :index do
       if params[:commit].blank? && params[:q].blank? && params[:scope].blank? && params[:page].blank?
         params['q'] = {:fes_year_id_eq => FesYear.this_year.id}
       end

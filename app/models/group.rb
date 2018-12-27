@@ -128,7 +128,7 @@ class Group < ActiveRecord::Base
 
   def self.get_has_subreps(user_id)
     # 副代表が登録済みの団体を返す
-    return Group.joins(:sub_reps).where(user_id: user_id).uniq!
+    return Group.joins(:sub_reps).where(user_id: user_id).distinct!
   end
 end
 

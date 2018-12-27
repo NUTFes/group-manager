@@ -26,7 +26,7 @@ ActiveAdmin.register GroupProjectName do
   filter :group, label: "運営団体", as: :select, collection: proc {Group.active_admin_collection(0)} # 見やすくなるようにGroupを年度順にセパレータ付きで表示
 
   controller do
-    before_filter only: :index do
+    before_action only: :index do
       if params[:commit].blank? && params[:q].blank? && params[:scope].blank? && params[:page].blank?
         params['q'] = {:fes_year_id_eq => FesYear.this_year.id}
       end

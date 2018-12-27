@@ -70,14 +70,14 @@ ActiveAdmin.register Group do
     ul do
       hm_children.each do |child|
         if child.kind_of?(ActiveRecord::Reflection::ThroughReflection) # throughアソシエーションの場合は中のActiveRecord::Reflection::HasManyReflectionを取得する
-          child = child.delegate_reflection
+          # child = child.delegate_reflection
         end
         li link_to child.klass.model_name.human, [:admin, group, child.name]
       end
 
       ho_children.each do |child|
         if child.kind_of?(ActiveRecord::Reflection::ThroughReflection)
-          child = child.delegate_reflection
+          # child = child.delegate_reflection
         end
         c = group.send(child.name)
         if c != nil
@@ -93,7 +93,7 @@ ActiveAdmin.register Group do
   filter :user_user_detail_name_ja, as: :string
 
   controller do
-    before_filter only: :index do
+    before_action only: :index do
       if params[:commit].blank? && params[:q].blank? && params[:scope].blank? && params[:page].blank?
         params['q'] = {:fes_year_id_eq => FesYear.this_year.id}
       end
