@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:group) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:student_id) %></th>
+      <th><%= model_class.human_attribute_name(:employee_category) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
         <td><%= employee.group.name %></td>
         <td><%= employee.name %></td>
         <td><%= employee.student_id %></td>
+        <td><%= employee.employee_category %></td>
         <td>
           <%= show_edit_botton(edit_employee_path(employee), employee) %>
           <%= show_destroy_botton(employee_path(employee), employee) %>

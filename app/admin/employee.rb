@@ -14,6 +14,16 @@ ActiveAdmin.register Employee do
     actions
   end
 
+  form do |f|
+    inputs '従業員の作成' do
+      input :group
+      input :name
+      input :student_id
+      input :employee_category
+    end
+    f.actions
+  end
+
   csv do
     column :id
     column :group_name do |employee|
