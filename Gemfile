@@ -65,11 +65,6 @@ gem 'seed-fu', '~> 2.3.9'
 gem 'simple_form'
 gem 'humanize_boolean'
 # bootstrap関連
-# twitter-bootstrap-railsはlessを使うので必要
-gem 'libv8', '3.16.14.19'
-gem 'therubyracer', '~> 0.12.3'
-# see http://yatta47.hateblo.jp/entry/2017/08/30/205729
-gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
 gem 'twitter-bootstrap-rails', '>= 3.2.0', '< 3.2.2'
 
 # PDF生成用
