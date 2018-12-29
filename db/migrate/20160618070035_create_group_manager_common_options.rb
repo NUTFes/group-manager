@@ -1,4 +1,4 @@
-class CreateGroupManagerCommonOptions < ActiveRecord::Migration
+class CreateGroupManagerCommonOptions < ActiveRecord::Migration[4.2]
   def change
     create_table :group_manager_common_options do |t|
       t.string :cooking_start_time

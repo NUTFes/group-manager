@@ -1,4 +1,4 @@
-class CreateRentalOrders < ActiveRecord::Migration
+class CreateRentalOrders < ActiveRecord::Migration[4.2]
   def change
     create_table :rental_orders do |t|
       t.references :group, index: true, foreign_key: true

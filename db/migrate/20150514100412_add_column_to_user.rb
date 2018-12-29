@@ -1,4 +1,4 @@
-class AddColumnToUser < ActiveRecord::Migration
+class AddColumnToUser < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :get_notice, :boolean, null: false, default: false
   end

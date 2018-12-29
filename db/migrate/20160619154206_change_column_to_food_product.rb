@@ -1,4 +1,4 @@
-class ChangeColumnToFoodProduct < ActiveRecord::Migration
+class ChangeColumnToFoodProduct < ActiveRecord::Migration[4.2]
  def up
    rename_column :food_products, :num, :first_day_num
    change_column :food_products, :first_day_num,  :integer, :default => 0

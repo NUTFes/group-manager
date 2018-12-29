@@ -1,4 +1,4 @@
-class CreateConfigWelcomeIndices < ActiveRecord::Migration
+class CreateConfigWelcomeIndices < ActiveRecord::Migration[4.2]
   def change
     create_table :config_welcome_indices do |t|
       t.string :name, null: false

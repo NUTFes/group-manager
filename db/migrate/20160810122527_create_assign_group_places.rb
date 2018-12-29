@@ -1,4 +1,4 @@
-class CreateAssignGroupPlaces < ActiveRecord::Migration
+class CreateAssignGroupPlaces < ActiveRecord::Migration[4.2]
   def change
     create_table :assign_group_places do |t|
       t.references :place_order, index: true, foreign_key: true, null:false
