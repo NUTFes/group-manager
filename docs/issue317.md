@@ -153,3 +153,37 @@ viewsで使われていた `error_span` メソッドは不要そうなので全�
 rails5から `before_filter` が非推奨になったので、 `before_action`に全て変更した。  
 ActiveRecordの `uniq` メソッドが `distinct` に変更されたらしいので、全て変更した。  
 
+## db/schema.rbの書式変更
+`bundle exec rake db:migrate` すると自動で `db/schema.rb` に変更が加わりました．
+スキーマの書き方がrails5から変わったらしいです．
+
+例）assign_rental_itemsのスキーマの変更点
+```diff
+- create_table "assign_rental_items", force: :cascade do |t|
++ create_table "assign_rental_items", id: :serial, force: :cascade do |t|
+    t.integer  "rental_order_id",  null: false
+    t.integer  "rentable_item_id", null: false
+    t.integer  "num",              null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
++     t.index ["rentable_item_id"], name: "index_assign_rental_items_on_rentable_item_id"
++     t.index ["rental_order_id"], name: "index_assign_rental_items_on_rental_order_id"
+end
+- add_index "assign_rental_items", ["rentable_item_id"], name: "index_assign_rental_items_on_rentable_item_id", using: :btree
+- add_index "assign_rental_items", ["rental_order_id"], name: "index_assign_rental_items_on_rental_order_id", using: :btree 
+```
+
+## マイグレーションファイルの書式変更
+マイグレーションファイルにバージョンの指定が必要になりました．
+今あるマイグレーションファイルはrails4.2のものなので，全てのマイグレーションファイルの継承の部分を
+
+```ruby
+class ClassName < ActiveRecord::Migration[4.2]
+```
+
+の様に変更しました．
+
+## therubyracerの削除
+`therubyracer` というgemはなんか良くないらしいのでGemfileから削除しました．
+nodejsをインストールすることで代用できるそうです．
+
