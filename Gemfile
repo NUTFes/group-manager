@@ -49,6 +49,10 @@ group :development, :test do
   gem 'pry-doc'     # methodを表示
   gem 'pry-byebug'  # デバッグを実施
   gem 'pry-stack_explorer' # スタックをたどれる
+  gem 'capistrano', require: false # deploy自動化
+  gem 'capistrano-bundler' # deploy自動化
+  gem 'capistrano-rbenv' # deploy自動化
+  gem 'capistrano-rails' # deploy自動化
 end
 
 
