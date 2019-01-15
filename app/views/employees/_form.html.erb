@@ -2,7 +2,6 @@
   <%= f.association :group, collection: @groups, selected: @employee.group_id %>
   <%= f.input :name, hint: t(".hint_name") %>
   <%= f.input :student_id, hint: t(".hint_studentid") %>
-  <%= f.input :employee_category, collection: EmployeeCategory.all, hint: t(".hint_category") %>
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 employees_path, :class => 'btn btn-default' %>

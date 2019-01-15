@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_22_132431) do
+ActiveRecord::Schema.define(version: 2019_01_15_142958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,11 +86,9 @@ ActiveRecord::Schema.define(version: 2018_10_22_132431) do
     t.integer "group_id"
     t.string "name", null: false
     t.integer "student_id", null: false
-    t.integer "employee_category_id"
     t.boolean "duplication"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["employee_category_id"], name: "index_employees_on_employee_category_id"
     t.index ["group_id"], name: "index_employees_on_group_id"
   end
 
@@ -403,7 +401,6 @@ ActiveRecord::Schema.define(version: 2018_10_22_132431) do
   add_foreign_key "assign_rental_items", "rental_orders"
   add_foreign_key "assign_stages", "stage_orders"
   add_foreign_key "assign_stages", "stages"
-  add_foreign_key "employees", "employee_categories"
   add_foreign_key "employees", "groups"
   add_foreign_key "fes_dates", "fes_years"
   add_foreign_key "food_products", "groups"

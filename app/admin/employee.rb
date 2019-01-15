@@ -1,6 +1,6 @@
 ActiveAdmin.register Employee do
 
-  permit_params :group_id, :name, :student_id, :employee_category_id
+  permit_params :group_id, :name, :student_id
   belongs_to :group, optional: true
 
   index do
@@ -9,7 +9,6 @@ ActiveAdmin.register Employee do
     column :group
     column :name
     column :student_id
-    column :employee_category
     # column :duplication
     actions
   end
@@ -19,7 +18,6 @@ ActiveAdmin.register Employee do
       input :group
       input :name
       input :student_id
-      input :employee_category
     end
     f.actions
   end
@@ -31,9 +29,6 @@ ActiveAdmin.register Employee do
     end
     column :name
     column :student_id
-    column :employee_category do |employee|
-      employee.employee_category
-    end
     # column :duplication
   end
 

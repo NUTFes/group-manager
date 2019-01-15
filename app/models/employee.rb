@@ -1,6 +1,5 @@
 class Employee < ActiveRecord::Base
   belongs_to :group
-  belongs_to :employee_category
   has_many :food_products, through: :group
   has_one :fes_year, through: :group
 
