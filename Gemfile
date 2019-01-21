@@ -92,3 +92,5 @@ gem 'bootsnap'
 gem 'listen'
 # 多言語化のためのGem
 gem 'rails-i18n'
+
+gem 'wkhtmltopdf-binary'
