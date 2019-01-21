@@ -1,4 +1,4 @@
-class CreateStockerItems < ActiveRecord::Migration
+class CreateStockerItems < ActiveRecord::Migration[4.2]
   def change
     create_table :stocker_items do |t|
       t.references :rental_item, index: true, foreign_key: true

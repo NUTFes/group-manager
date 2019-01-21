@@ -1,4 +1,4 @@
-class CreateGroupProjectNames < ActiveRecord::Migration
+class CreateGroupProjectNames < ActiveRecord::Migration[4.2]
   def change
     create_table :group_project_names do |t|
       t.references :group, index: true, foreign_key: true

@@ -1,4 +1,4 @@
-class CreateRentalItemAllowLists < ActiveRecord::Migration
+class CreateRentalItemAllowLists < ActiveRecord::Migration[4.2]
   def change
     create_table :rental_item_allow_lists do |t|
       t.references :rental_item, index: true, foreign_key: true

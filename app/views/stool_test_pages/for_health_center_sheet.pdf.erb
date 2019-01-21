@@ -34,7 +34,6 @@
           <tr>
             <td width="17%">団体名</td>
             <td width="25%">氏名</td>
-            <td width="12%">役職</td>
             <td width="13%">検便実施日</td>
             <td width='33%'>備考</td>
           </tr>
@@ -49,7 +48,6 @@
               <td rowspan= <%= count_in_group(@employees, employee.group_id) - employee_count %>><%= employee.group.name %></td>
             <% end %>
             <td style="font-size : <%= size_calibration(employee.name) %>"><%= employee.name %></td>
-            <td><%= employee.employee_category.to_s %></td>
             <td><%= @date_of_stool_test %></td>
             <td style="font-size : 12px"><%= already_collected(employee) %></td>
             <% employee_count += 1 %>

@@ -1,4 +1,4 @@
-class CreateAssignStages < ActiveRecord::Migration
+class CreateAssignStages < ActiveRecord::Migration[4.2]
   def change
     create_table :assign_stages do |t|
       t.references :stage_order, index: true, foreign_key: true

@@ -1,27 +1,18 @@
 <%= simple_form_for @place_order, wrapper: "horizontal_form", :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.hidden_field :group_id %>
-
   <%= f.input :first,
     collection: Place.collections( @place_order.group_id ),
     selected: @place_order.first %>
-  <%= error_span(@place_order[:first]) %>
-
   <%= f.input :second,
     collection: Place.collections( @place_order.group_id ),
     selected: @place_order.second %>
-  <%= error_span(@place_order[:second]) %>
-
   <%= f.input :third,
     collection: Place.collections( @place_order.group_id ),
     selected: @place_order.third %>
-  <%= error_span(@place_order[:third]) %>
-  
   <%= f.input :remark,
     input_html: { value: @place_order.remark },
-    hint: t("実施場所の希望理由等があれば記入してください。「規定外の場所」を選択した場合は、具体的な場所・部屋名を入力してください。")
+    hint: "実施場所の希望理由等があれば記入してください。「規定外の場所」を選択した場合は、具体的な場所・部屋名を入力してください。"
   %>
-  <%= error_span(@place_order[:remark]) %>
-
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 place_orders_path, :class => 'btn btn-default' %>

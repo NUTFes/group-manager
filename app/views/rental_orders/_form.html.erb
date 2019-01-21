@@ -2,8 +2,6 @@
   <%= f.hidden_field :group_id %>
   <%= f.hidden_field :rental_item_id %>
   <%= f.input :num %>
-  <%= error_span(@rental_order[:num]) %>
-
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 rental_orders_path, :class => 'btn btn-default' %>

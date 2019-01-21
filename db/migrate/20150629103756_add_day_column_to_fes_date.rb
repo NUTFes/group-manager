@@ -1,4 +1,4 @@
-class AddDayColumnToFesDate < ActiveRecord::Migration
+class AddDayColumnToFesDate < ActiveRecord::Migration[5.2]
   def change
     add_column :fes_dates, :day, :string
   end

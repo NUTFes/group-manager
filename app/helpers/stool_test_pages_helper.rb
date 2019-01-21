@@ -7,7 +7,7 @@ module StoolTestPagesHelper
   end
 
   def count_in_group(employees, group_id)
-    if employees.class == Employee::ActiveRecord_Relation then
+    if employees.kind_of?(ActiveRecord::Relation) then
       employees.where(group_id: group_id).size
     else
       Employee.where(id: @employees_uniq).where(group_id: group_id).size

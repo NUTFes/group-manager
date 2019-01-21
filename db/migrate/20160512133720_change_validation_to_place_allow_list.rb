@@ -1,4 +1,4 @@
-class ChangeValidationToPlaceAllowList < ActiveRecord::Migration
+class ChangeValidationToPlaceAllowList < ActiveRecord::Migration[4.2]
   def up 
     change_column :place_allow_lists, :place_id,          :integer, null:false
     change_column :place_allow_lists, :group_category_id, :integer, null:false

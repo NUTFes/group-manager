@@ -1,4 +1,4 @@
-class CreateRentalItems < ActiveRecord::Migration
+class CreateRentalItems < ActiveRecord::Migration[4.2]
   def change
     create_table :rental_items do |t|
       t.string :name_ja, null: false, unique: true

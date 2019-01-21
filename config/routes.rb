@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   config = ActiveAdmin::Devise.config
   config[:controllers][:registrations] = 'registrations'
   devise_for :users, config
-  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

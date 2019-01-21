@@ -1,4 +1,4 @@
-class CreateConfigUserPermissions < ActiveRecord::Migration
+class CreateConfigUserPermissions < ActiveRecord::Migration[4.2]
   def change
     create_table :config_user_permissions do |t|
       t.string :form_name, null: false
