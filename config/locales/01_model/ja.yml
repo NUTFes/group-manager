@@ -58,6 +58,7 @@ ja:
           department_name_ja: 所属
           grade: 学年
           grade_name: 学年
+          group: 参加団体名
           tel: 電話番号
         rental_item:
           name_ja: 名称
