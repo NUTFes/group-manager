@@ -253,5 +253,5 @@ heroku run rake db:seed_fu # 初期値投入
 環境変数`EMAIL_PASSWORD`はGmail(nutfes.info)から生成されるアプリケーションごとに固有のパスワード(アプリパスワード)を設定する必要がある．  
 アプリパスワードはnutfes.infoアカウントにログインし，下のリンクを開いて生成できる．  
 https://security.google.com/settings/security/apppasswords  
-公開するサーバを移行するような場合ははこのパスワードも設定し直す必要がある．  
+公開するサーバを移行するような場合はこのパスワードも設定し直す必要がある．  
 
