@@ -12,8 +12,6 @@ gem 'sass-rails', '~> 5.0.7'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2.2'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -26,12 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,6 +41,14 @@ group :development, :test do
   gem 'pry-doc'     # methodを表示
   gem 'pry-byebug'  # デバッグを実施
   gem 'pry-stack_explorer' # スタックをたどれる
+
+  # Puma+Capistranoでデプロイ
+  # https://qiita.com/eiei19/items/7c08d358c82cb538def0
+  gem 'capistrano',         require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+  gem 'capistrano-rbenv',   require: false
 end
 
 
@@ -71,6 +71,7 @@ gem 'twitter-bootstrap-rails', '>= 3.2.0', '< 3.2.2'
 gem 'pdfkit'
 gem 'wkhtmltopdf'
 gem 'wkhtmltopdf-heroku'
+gem 'wkhtmltopdf-binary'
 # ページネーションを追加
 gem 'kaminari'
 # heroku監視
@@ -93,4 +94,6 @@ gem 'listen'
 # 多言語化のためのGem
 gem 'rails-i18n'
 
-gem 'wkhtmltopdf-binary'
+# アプリケーションサーバにPumaを使う
+gem 'puma'
+
