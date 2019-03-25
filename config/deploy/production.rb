@@ -1,5 +1,5 @@
-server '153.126.171.228', port: 41639, roles: %w[web app db], primary: true
-set :branch,        'develop'
+server 'nutfes_np', port: 41639, roles: %w[web app db], primary: true
+set :branch,        'deploy_setting'
 set :stage,         :production
 set :rails_env,     :production
 set :ssh_options, {
@@ -7,4 +7,3 @@ set :ssh_options, {
     keys:           %w('~/.ssh/deploy_group_manager'),
     forward_agent:  true,
 }
-

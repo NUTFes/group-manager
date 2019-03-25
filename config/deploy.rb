@@ -7,7 +7,7 @@ set :ssh_options, proxy: Net::SSH::Proxy::Command.new('ssh -W proxy.nagaokaut.ac
 
 set :application,     'group-manager'
 set :repo_url,        'git@github.com:NUTFes/group-manager.git'
-set :deploy_to,       '/home/deploy/group-manager'
+set :deploy_to,       '/var/www/group-manager'
 set :user,            'deploy'
 set :user_sudo,       false
 set :puma_threads,    [4, 16]
@@ -38,10 +38,11 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'public/system',
   'public/uploads'
 )
-set :linked_files, fetch(:linked_files, []).push(
-  'config/database.yml',
-  'config/secrets.yml'
-)
+
+# set :linked_files, fetch(:linked_files, []).push(
+#   'config/database.yml',
+#   'config/secrets.yml'
+# )
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
