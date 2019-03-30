@@ -21,6 +21,6 @@ class Place < ActiveRecord::Base
 
   def self.usable_all_places
     Place.joins(:place_allow_lists) \
-      .uniq.where(place_allow_lists:{enable:true}).order(:id)
+      .distinct.where(place_allow_lists:{enable:true}).order(:id)
   end
 end

@@ -1,6 +1,5 @@
 class Employee < ActiveRecord::Base
   belongs_to :group
-  belongs_to :employee_category
   has_many :food_products, through: :group
   has_one :fes_year, through: :group
 
@@ -46,6 +45,6 @@ class Employee < ActiveRecord::Base
   scope :cooking, -> {where( food_products: {is_cooking: 'true'} )}
   # 調理ありの提供品を扱う団体の従業員を取得
   scope :cooking_employees, -> (year_id) {
-    joins( :food_products ).where( groups: { fes_year_id: year_id } ).cooking.sort_groupid_studentid.uniq
+    joins( :food_products ).where( groups: { fes_year_id: year_id } ).cooking.sort_groupid_studentid.distinct
   }
 end

@@ -6,7 +6,6 @@
   '割当対象: '<%= @assign_rental_item.rentable_item.to_s %>
 
   <%= f.input :num %>
-  <%= error_span(@assign_rental_item[:num]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

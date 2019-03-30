@@ -1,4 +1,4 @@
-class CreatePowerOrders < ActiveRecord::Migration
+class CreatePowerOrders < ActiveRecord::Migration[4.2]
   def change
     create_table :power_orders do |t|
       t.references :group, index: true, foreign_key: true, null: false

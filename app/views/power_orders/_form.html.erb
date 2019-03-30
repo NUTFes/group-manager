@@ -1,28 +1,20 @@
 <%= simple_form_for @power_order, wrapper: "horizontal_form", :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.association :group, collection: @groups, selected: @power_order.group_id %>
-  <%= error_span(@power_order[:group_id]) %>
   <%= f.input :item,
     hint: t(".hint_item")
   %>
-  <%= error_span(@power_order[:item]) %>
   <%= f.input :power,
     hint: t(".hint_power")
   %>
-  <%= error_span(@power_order[:power]) %>
   <%= f.input :manufacturer,
     hint: t(".hint_manufacturer")
   %>
-  <%= error_span(@power_order[:manufacturer]) %>
   <%= f.input :model,
     hint: t(".hint_model")
   %>
-  <%= error_span(@power_order[:model]) %>
-
   <%=f.input :item_url,
     hint: t(".hint_item_url")
   %>
-  <%= error_span(@power_order[:item_url]) %>
-
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 power_orders_path, :class => 'btn btn-default' %>

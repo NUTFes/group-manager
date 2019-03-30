@@ -1,4 +1,4 @@
-class CreateFoodProducts < ActiveRecord::Migration
+class CreateFoodProducts < ActiveRecord::Migration[4.2]
   def change
     create_table :food_products do |t|
       t.references :group, index: true, foreign_key: true

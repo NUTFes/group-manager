@@ -9,3 +9,10 @@ ja:
       resend_confirmation_instructions:
         title: "ユーザ確認の再送"
         submit: "ユーザ確認手順を再送信する"
+  views:
+    pagination:
+      next: "次のページ"
+      last: "最後のページ"
+      first: "最初のページ"
+      previous: "前のページ"
+      truncate: "..."

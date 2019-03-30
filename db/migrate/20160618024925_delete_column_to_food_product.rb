@@ -1,4 +1,4 @@
-class DeleteColumnToFoodProduct < ActiveRecord::Migration
+class DeleteColumnToFoodProduct < ActiveRecord::Migration[4.2]
   def up
     remove_column :food_products, :start, :string
   end

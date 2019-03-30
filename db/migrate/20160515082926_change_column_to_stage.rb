@@ -1,4 +1,4 @@
-class ChangeColumnToStage < ActiveRecord::Migration
+class ChangeColumnToStage < ActiveRecord::Migration[4.2]
   def up
     remove_column :stages, :is_sunny,     :boolean
     add_column    :stages, :enable_sunny, :boolean, :default => false

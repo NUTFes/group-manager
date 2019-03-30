@@ -1,4 +1,4 @@
-class RemoveCommonOptionToStageOrders < ActiveRecord::Migration
+class RemoveCommonOptionToStageOrders < ActiveRecord::Migration[4.2]
   def change
     remove_column :stage_orders, :own_equipment
     remove_column :stage_orders, :bgm

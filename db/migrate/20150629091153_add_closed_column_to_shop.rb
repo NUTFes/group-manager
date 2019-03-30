@@ -1,4 +1,4 @@
-class AddClosedColumnToShop < ActiveRecord::Migration
+class AddClosedColumnToShop < ActiveRecord::Migration[4.2]
   def change
     add_column :shops, :is_closed_sun, :boolean, default: false
     add_column :shops, :is_closed_mon, :boolean, default: false

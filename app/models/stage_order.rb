@@ -112,22 +112,19 @@ class StageOrder < ActiveRecord::Base
 
     # 時刻指定ありの場合
     if is_all_times
-      # 入力された時刻の文字列(ex. 08:30)をパース
-      prepare_start_tod = Tod::TimeOfDay.try_parse(prepare_start_time)
-      perform_start_tod = Tod::TimeOfDay.try_parse(performance_start_time)
-      perform_end_tod = Tod::TimeOfDay.try_parse(performance_end_time)
-      cleanup_end_tod = Tod::TimeOfDay.try_parse(cleanup_end_time)
-      # 準備開始から片付け終了までの時間
-      all_interval = cleanup_end_tod - prepare_start_tod
-      # 時刻の大小関係がおかしい場合
-      if (prepare_start_tod > perform_start_tod || perform_start_tod >= perform_end_tod || perform_end_tod > cleanup_end_tod)
+      prepare_start = DateTime.parse(prepare_start_time)
+      perform_start = DateTime.parse(performance_start_time)
+      perform_end = DateTime.parse(performance_end_time)
+      cleanup_end = DateTime.parse(cleanup_end_time)
+
+      if (prepare_start > perform_start or perform_start >= perform_end or perform_end > cleanup_end)
         errors.add( :prepare_start_time, "不正な値です" )
         errors.add( :performance_start_time, "不正な値です" )
         errors.add( :performance_end_time, "不正な値です" )
         errors.add( :cleanup_end_time, "不正な値です" )
       end
-      # 全体時間が2時間より長い場合
-      if all_interval > Tod::TimeOfDay.parse("02:00:00")
+
+      if cleanup_end > prepare_start + Rational(2, 24)
         errors.add( :prepare_start_time, "最大利用時間は2時間までです" )
         errors.add( :performance_start_time, "最大利用時間は2時間までです" )
         errors.add( :performance_end_time, "最大利用時間は2時間までです" )

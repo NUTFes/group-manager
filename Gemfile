@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
 # ruby version for heroku
-ruby '2.2.0'
+ruby '2.5.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.10'
+gem 'rails', '~> 5.2.0'
 # Use postgresql as the database for Active Record
-gem 'pg', '0.21.0'
+gem 'pg', '~> 0.21.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails', '~> 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -38,10 +38,10 @@ group :development, :test do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.5.1'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '1.6.4'
+  gem 'spring', '~> 1.6.4'
 
   # rails consoleをリッチにする
   # http://ruby-rails.hatenadiary.com/entry/20141024/1414081224
@@ -56,21 +56,16 @@ end
 gem 'devise'
 gem 'devise-i18n' # アプリのlocalにあわせて多言語化
 # 管理画面
-gem 'activeadmin', '~> 1.1.0'
+gem 'activeadmin', '~> 1.4.3'
 # 権限管理
-gem 'cancancan', '~> 1.10'
+gem 'cancancan', '~> 2.3.0'
 # 初期データ入力
-gem 'seed-fu', '~> 2.3'
+gem 'seed-fu', '~> 2.3.9'
 # viewを簡単に書く
 gem 'simple_form'
 gem 'humanize_boolean'
 # bootstrap関連
-# twitter-bootstrap-railsはlessを使うので必要
-gem 'libv8', '3.16.14.19'
-gem 'therubyracer', '0.12.2'
-# see http://yatta47.hateblo.jp/entry/2017/08/30/205729
-gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '>= 3.2.0', '< 3.2.2'
 
 # PDF生成用
 gem 'pdfkit'
@@ -90,5 +85,12 @@ gem 'rails_12factor', group: :production
 # メンテナンスページを表示するGem
 gem 'turnout'
 
-# 時刻を扱いやすくするGem
-gem 'tod'
+# railsの起動時の処理を最適化することで起動時間を短縮してくれるGem
+# rails 5.2.0から標準使用になった
+gem 'bootsnap'
+# 特定のディレクトリ配下のファイルの変更を監視したいときに使うGem
+gem 'listen'
+# 多言語化のためのGem
+gem 'rails-i18n'
+
+gem 'wkhtmltopdf-binary'

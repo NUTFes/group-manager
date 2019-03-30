@@ -1,4 +1,4 @@
-class AddColumnToStageOrders < ActiveRecord::Migration
+class AddColumnToStageOrders < ActiveRecord::Migration[4.2]
   def change
     # 削除
     remove_column :stage_orders, :time_interval, :string

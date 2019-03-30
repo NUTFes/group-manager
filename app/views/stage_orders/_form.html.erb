@@ -8,12 +8,10 @@
   <%= f.input :stage_first,
     collection: Stage.by_weather(@stage_order.is_sunny),
     selected: @stage_order.stage_first %>
-  <%= error_span(@stage_order[:stage_first]) %>
 
   <%= f.input :stage_second,
     collection: Stage.by_weather(@stage_order.is_sunny),
     selected: @stage_order.stage_second %>
-  <%= error_span(@stage_order[:stage_second]) %>
 
   <div class="col-sm-3">
   </div>

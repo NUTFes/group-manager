@@ -1,4 +1,4 @@
-class CreatePurchaseLists < ActiveRecord::Migration
+class CreatePurchaseLists < ActiveRecord::Migration[4.2]
   def change
     create_table :purchase_lists do |t|
       t.references :food_product, index: true, foreign_key: true, null: false

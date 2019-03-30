@@ -1,14 +1,7 @@
 <%= simple_form_for @employee, wrapper: "horizontal_form", :html => { :class => 'form-horizontal' } do |f| %>
-
   <%= f.association :group, collection: @groups, selected: @employee.group_id %>
-  <%= error_span(@employee[:group_id]) %>
-
   <%= f.input :name, hint: t(".hint_name") %>
-  <%= error_span(@employee[:name]) %>
-
   <%= f.input :student_id, hint: t(".hint_studentid") %>
-  <%= error_span(@employee[:student_id]) %>
-
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 employees_path, :class => 'btn btn-default' %>
