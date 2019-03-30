@@ -44,9 +44,9 @@ group :development, :test do
 
   # Puma+Capistranoでデプロイ
   # https://qiita.com/eiei19/items/7c08d358c82cb538def0
-  gem 'capistrano',         require: false
+  gem 'capistrano',         '~> 3.6'
   gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
+  gem 'capistrano-bundler', '~> 1.5'
   gem 'capistrano3-puma',   require: false
   gem 'capistrano-rbenv',   require: false
 end

@@ -9,20 +9,22 @@ set :application,     'group-manager'
 set :repo_url,        'git@github.com:NUTFes/group-manager.git'
 set :deploy_to,       '/var/www/group-manager'
 set :user,            'deploy'
-set :user_sudo,       false
+set :user_sudo,       true
 set :puma_threads,    [4, 16]
-set :puma_workers,    0
+# set :puma_workers,    0
 set :pty,             true
-set :deploy_via,      :remote_cache
+set :format,          :pretty
+set :log_level,       :debug
+set :scm, :git
 
 # puma settings
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+# set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.access.log"
 set :puma_error_log,  "#{release_path}/log/puma.error.log"
 set :puma_preload_app,          true
-set :puma_worker_timeout,       nil
 set :puma_init_active_record,   true
 
 # rbenv settings
@@ -38,6 +40,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'public/system',
   'public/uploads'
 )
+
+append :linked_dirs, '.bundle'
 
 # set :linked_files, fetch(:linked_files, []).push(
 #   'config/database.yml',
@@ -59,7 +63,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      # unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      unless `git rev-parse HEAD` == `git rev-parse origin/deploy_setting`
         puts "WARNING: HEAD is not the same as origin/master"
         puts "Run `git push` to sync changes."
         exit

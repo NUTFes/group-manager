@@ -12,7 +12,6 @@ workers 2
 preload_app!
 
 # デーモン化の設定
-demonize true
 pidfile "#{tmp_path}/pids/puma.pid"
 stdout_redirect "#{tmp_path}/log/puma.stdout.log", "#{tmp_path}/logs/puma.stderr.log", true
 
