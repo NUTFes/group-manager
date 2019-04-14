@@ -21,4 +21,7 @@ FesDate.seed( :id,
   { id: 10, days_num:0, date:'9/14', day:'fri', fes_year_id: 4} ,
   { id: 11, days_num:1, date:'9/15', day:'sat', fes_year_id: 4} ,
   { id: 12, days_num:2, date:'9/16', day:'sun', fes_year_id: 4} ,
+  { id: 13, days_num:0, date:'9/13', day:'fri', fes_year_id: 5} ,
+  { id: 14, days_num:1, date:'9/14', day:'sat', fes_year_id: 5} ,
+  { id: 15, days_num:2, date:'9/15', day:'sun', fes_year_id: 5} ,
 )
