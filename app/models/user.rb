@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     :registerable, # 登録を可に
     :confirmable
 
-  belongs_to :role      # Userからroleを参照可能にする, ex) User.find(1).role
+  belongs_to :role, optional: true           # Userからroleを参照可能にする, ex) User.find(1).role
   has_one :user_detail, dependent: :destroy  # UserからUserDetailを参照可能にする
   has_many :groups, dependent: :destroy
 
