@@ -12,7 +12,13 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
-/tmp
+/tmp/cache
+/tmp/pids/*
+/tmp/logs/*
+/tmp/sockets/*
+!/tmp/pids/.keep
+!/tmp/logs/.keep
+!/tmp/sockets/.keep
 
 .idea
 .ruby-version
