@@ -44,3 +44,6 @@
 <% end %>
 <%= render :partial => 'warnign_preserved' %>
 </p>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              welcome_index_path, :class => 'btn btn-default'  %>
