@@ -180,6 +180,7 @@ ja:
           rental_item_time: 貸出時間
           return_item_day: 返却日
           return_item_time: 返却時間
+          order_deadline: 申請締め切り
         assign_stage:
           stage_order: 団体名
           fes_date: 開催日
