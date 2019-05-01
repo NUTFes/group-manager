@@ -22,11 +22,7 @@ class WelcomeController < GroupBase
     @group_count = Group.where(user_id: current_user.id).count
 
     # 申請の締め切り
-    @date_of_order_deadline = GroupManagerCommonOption.first.order_deadline
-    # デフォルトでは<DEADLINE>を表示
-    if @date_of_order_deadline.empty?
-      @date_of_order_deadline = "<DEADLINE>"
-    end
+    @date_of_order_deadline = GroupManagerCommonOption.first.order_deadline.presence || "<DEADLINE>"
 
   end
 
