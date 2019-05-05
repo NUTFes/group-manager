@@ -16,6 +16,12 @@ class GroupBase < ApplicationController
     @num_nosubrep_groups = @groups.count -
                            Group.where(fes_year: this_year).
                                  get_has_subreps(current_user.id).count
+    # ステージ団体以外の場合，実施場所の申請が未回答のグループがあるかどうか
+    @is_place_order_empty = @groups.any? {|group| group.place_order_is_empty?}
+    # ステージ団体の場合，ステージ利用の申請が未回答のグループがあるかどうか
+    @is_stage_order_incomplete = @groups.any? {|group| group.stage_order_is_incomplete?}
+    # ステージ団体の場合，ステージ利用の詳細が未回答のグループがあるかどうか
+    @is_stage_common_option_empty = @groups.any? {|group| group.stage_common_option_is_empty?}
   end
 
   def set_ability

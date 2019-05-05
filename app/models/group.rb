@@ -130,5 +130,24 @@ class Group < ActiveRecord::Base
     # 副代表が登録済みの団体を返す
     return Group.joins(:sub_reps).where(user_id: user_id).distinct!
   end
+
+  # ステージ以外の団体で，実施場所の申請が未回答の場合trueを返す
+  def place_order_is_empty?
+    return false if self.group_category_id == 3
+    self.place_order.first.nil?
+  end
+
+  # ステージ団体で，ステージ利用の申請が未回答の場合trueを返す
+  def stage_order_is_incomplete?
+    return false if self.group_category_id != 3
+    self.stage_orders.any? {|order| order.stage_first.nil?}
+  end
+
+  # ステージ団体で，ステージ利用の詳細が未回答の場合trueを返す
+  def stage_common_option_is_empty?
+    return false if self.group_category_id != 3
+    self.stage_common_option.stage_content == '未回答'
+  end
+
 end
 

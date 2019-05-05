@@ -1,4 +1,9 @@
-<div class="panel panel-primary">
+<% if @is_stage_order_incomplete or @is_stage_common_option_empty %>
+  <%# 未登録の団体がある場合には枠をwarningにする %>
+  <div class="panel panel-warning">
+<% else %>
+  <div class="panel panel-primary">
+<% end %>
   <div class="panel-heading">
     <h3 class="panel-title">ステージ利用</h3>
   </div>
