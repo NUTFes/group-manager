@@ -94,3 +94,8 @@ gem 'listen'
 gem 'rails-i18n'
 
 gem 'wkhtmltopdf-binary'
+
+# puma
+gem 'puma'
+gem 'puma_worker_killer'
+

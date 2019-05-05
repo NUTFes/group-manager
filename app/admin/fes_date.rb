@@ -20,6 +20,7 @@ ActiveAdmin.register FesDate do
     selectable_column
     id_column
     column :fes_year
+    column :date
     column :day
     column :days_num
     actions

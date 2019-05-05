@@ -10,6 +10,9 @@ ActiveAdmin.register UserDetail do
     column :name_en
     column :grade
     column :department
+    column :group do |detail|
+      detail.user.groups.pluck(:name).join(" , ")
+    end
     column :tel
     column :created_at
     actions
