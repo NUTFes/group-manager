@@ -11,7 +11,7 @@ class PlaceOrder < ActiveRecord::Base
 
   def select_different_stage
     return if first.nil? & second.nil? & third.nil? # 全てnil(初期値)なら無効
-    return if [first, second, third].count(25) >= 2 # 全て希望なしなら無効
+    return if [first, second, third].count(25) == 3 # 全て希望なしなら無効
     return if [first, second, third].count(15) >= 2 # 規定外の場所は複数選択可能に
     if [first, second, third].uniq.size < 3
         errors.add( :first , "候補が重複しています。")
