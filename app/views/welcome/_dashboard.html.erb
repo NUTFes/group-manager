@@ -4,6 +4,7 @@
   <p>技大祭に関する各種申請が可能です。</p><br>
   <h3><b>第1回参加団体アプリマニュアルは<%= link_to "こちら", "http://nutfes.boo.jp/docs/group-manager-manual.pdf", style: "color: red", class: "link_btn" %>から</b></h3>
   <h3><b>第2回参加団体アプリマニュアルは<%= link_to "こちら", "http://nutfes.boo.jp/docs/group-manager-manual-2.pdf", style: "color:red", class: "link_btn" %>から</b></h3>
+  <h3>申請締め切りは<b><font color='red'><%= @date_of_order_deadline %></font></b>です</h3>
   <h4>質問要望などございましたら，参加団体名をご明記の上，<%= mail_to('nutfes.soumu@gmail.com', name = nil, html_options = {}) %>までご連絡ください。</h4>
   
   <!--  

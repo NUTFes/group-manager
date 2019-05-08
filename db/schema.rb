@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_15_142958) do
+ActiveRecord::Schema.define(version: 2019_04_29_091222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 2019_01_15_142958) do
     t.string "rental_item_time"
     t.string "return_item_day"
     t.string "return_item_time"
+    t.string "order_deadline"
   end
 
   create_table "group_project_names", id: :serial, force: :cascade do |t|

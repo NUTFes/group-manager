@@ -21,6 +21,9 @@ class WelcomeController < GroupBase
     # Userが保有するグループ数
     @group_count = Group.where(user_id: current_user.id).count
 
+    # 申請の締め切り
+    @date_of_order_deadline = GroupManagerCommonOption.first.order_deadline.presence || "<DEADLINE>"
+
   end
 
   def regist_user_detail

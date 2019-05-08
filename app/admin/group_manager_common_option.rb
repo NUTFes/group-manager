@@ -1,6 +1,6 @@
 ActiveAdmin.register GroupManagerCommonOption do
 
-  permit_params :cooking_start_time, :date_of_stool_test, :rental_item_day, :rental_item_time, :return_item_day, :return_item_time
+  permit_params :cooking_start_time, :date_of_stool_test, :rental_item_day, :rental_item_time, :return_item_day, :return_item_time, :order_deadline
 
   index do
     selectable_column
@@ -11,6 +11,7 @@ ActiveAdmin.register GroupManagerCommonOption do
     column :rental_item_time
     column :return_item_day
     column :return_item_time
+    column :order_deadline
     actions
   end
 
