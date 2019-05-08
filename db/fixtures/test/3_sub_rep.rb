@@ -1,0 +1,10 @@
+SubRep.seed( :id,
+{   id: 1,
+    group_id: 1,
+    name_en: "Taro Gidai (admin)",
+    name_ja: "技大太郎 (admin)",
+    email: "subrep@nutfes.com",
+    department_id: 2,
+    grade_id: 2,
+    tel: "111-0000-9999",
+})

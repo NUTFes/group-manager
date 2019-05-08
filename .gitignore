@@ -16,6 +16,7 @@
 /tmp/pids/*
 /tmp/logs/*
 /tmp/sockets/*
+/tmp/restart.txt
 !/tmp/pids/.keep
 !/tmp/logs/.keep
 !/tmp/sockets/.keep
