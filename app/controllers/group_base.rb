@@ -16,6 +16,8 @@ class GroupBase < ApplicationController
     @num_nosubrep_groups = @groups.count -
                            Group.where(fes_year: this_year).
                                  get_has_subreps(current_user.id).count
+    # パーテーションの申請があり，パーテーション足が未申請かどうか
+    @is_partition_leg_not_ordered = @groups.any? {|group| group.partition_leg_is_not_ordered?}
   end
 
   def set_ability

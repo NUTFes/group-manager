@@ -1,4 +1,8 @@
-<div class="panel panel-primary">
+<% if @is_partition_leg_not_ordered %>
+  <div class="panel panel-warning">
+<% else %>
+  <div class="panel panel-primary">
+<% end %>
   <div class="panel-heading">
     <h3 class="panel-title">物品貸出</h3>
   </div>

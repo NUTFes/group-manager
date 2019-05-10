@@ -130,5 +130,15 @@ class Group < ActiveRecord::Base
     # 副代表が登録済みの団体を返す
     return Group.joins(:sub_reps).where(user_id: user_id).distinct!
   end
+
+  def partition_leg_is_not_ordered?
+    # パーテーションの申請
+    partition_order = self.rental_orders.find{|order| order.rental_item_id == 5}
+    # パーテーション足の申請
+    partition_leg_order = self.rental_orders.find{|order| order.rental_item_id == 11}
+    return false if partition_order.nil? or partition_leg_order.nil?
+    # パーテーションの申請があるがパーテーション足の申請がない場合true
+    partition_order.num > 0 and partition_leg_order.num == 0
+  end
 end
 

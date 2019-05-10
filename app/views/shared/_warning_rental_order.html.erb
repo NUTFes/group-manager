@@ -1,0 +1,7 @@
+<%# パーテーション足が未申請の警告を表示する %>
+<% if @is_partition_leg_not_ordered %>
+  <div class="alert alert-dismissible alert-warning">
+    <h4>Warning!</h4>
+    <p>パーテーションの足が未申請の団体があります．</p>
+  </div>
+<% end %>
