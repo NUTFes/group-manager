@@ -52,4 +52,11 @@ RentalItemAllowList.seed( :id,
   { id: 35, rental_item_id: 10, group_category_id: 4}, # 展示体験
   { id: 36, rental_item_id: 10, group_category_id: 5}, # その他
   { id: 44, rental_item_id: 10, group_category_id: 6}, #研究室公開
+  # パーテーション足の貸し出し可能な団体種別
+  { id: 45, rental_item_id: 11, group_category_id: 1}, # 模擬店(食品)
+  { id: 46, rental_item_id: 11, group_category_id: 2}, # 模擬店(食品)
+  { id: 47, rental_item_id: 11, group_category_id: 3}, # 模擬店(食品)
+  { id: 48, rental_item_id: 11, group_category_id: 4}, # 模擬店(食品)
+  { id: 49, rental_item_id: 11, group_category_id: 5}, # 模擬店(食品)
+  { id: 50, rental_item_id: 11, group_category_id: 6}, # 模擬店(食品)
 )
