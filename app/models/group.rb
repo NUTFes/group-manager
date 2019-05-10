@@ -140,7 +140,11 @@ class Group < ActiveRecord::Base
   # ステージ団体で，ステージ利用の申請が未回答の場合trueを返す
   def stage_order_is_incomplete?
     return false if self.group_category_id != 3
-    self.stage_orders.any? {|order| order.stage_first.nil?}
+    # 4つのstage_orderのうち未回答でないものをselectし，fes_date_idの配列を作る
+    stage_order_fes_dates = self.stage_orders.select{|order| order.stage_first}.map{|order| order.fes_date_id}
+    # 申請が片日ot両日埋まっていなければtrue
+    not ( (stage_order_fes_dates.size == 2 and stage_order_fes_dates.uniq.size == 1) \
+      or (stage_order_fes_dates.size == 4 and stage_order_fes_dates.uniq.size == 2) )
   end
 
   # ステージ団体で，ステージ利用の詳細が未回答の場合trueを返す
