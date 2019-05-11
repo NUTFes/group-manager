@@ -9,10 +9,10 @@ class PowerOrderUpdateValidator < ActiveModel::Validator
     # 更新前の電力量を引く
     all_without_updated = all - PowerOrder.find(record.id).power
 
-    # ステージ団体は2500W, その他は1000W
-    limit_power = stage?(record.group_id) ? 2500 : 1000
+    # ステージ団体は2500W, その他は1500W
+    limit_power = stage?(record.group_id) ? 2500 : 1500
 
-    # 追加される電力と合計して1000を超えたらエラー
+    # 追加される電力と合計して1500を超えたらエラー
     if (all_without_updated + record.power) > limit_power
       msg = "団体が使用する電力の合計が#{limit_power}[W]を超えています (#{all_without_updated}[W]が申請済み)．"
       record.errors[:power] << msg

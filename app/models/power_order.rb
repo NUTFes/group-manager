@@ -21,7 +21,7 @@ class PowerOrder < ActiveRecord::Base
   }
 
   validates :power, unless: :stage?, numericality: {
-    only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 1000,
+    only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 1500,
   } 
 
   def is_correct_url
