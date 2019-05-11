@@ -1,0 +1,7 @@
+<%# ステージ利用の詳細が未回答の場合に警告を表示する %>
+<% if @is_stage_common_option_empty %>
+  <div class="alert alert-dismissible alert-warning">
+    <h4>Warning!</h4>
+    <p>ステージ利用の詳細が未完了の団体があります．</p>
+  </div>
+<% end %>
