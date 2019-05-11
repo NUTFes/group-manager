@@ -130,5 +130,28 @@ class Group < ActiveRecord::Base
     # 副代表が登録済みの団体を返す
     return Group.joins(:sub_reps).where(user_id: user_id).distinct!
   end
+
+  # ステージ以外の団体で，実施場所の申請が未回答の場合trueを返す
+  def place_order_is_empty?
+    return false if self.group_category_id == 3
+    self.place_order.first.nil?
+  end
+
+  # ステージ団体で，ステージ利用の申請が未回答の場合trueを返す
+  def stage_order_is_incomplete?
+    return false if self.group_category_id != 3
+    # 4つのstage_orderのうち未回答でないものをselectし，fes_date_idの配列を作る
+    stage_order_fes_dates = self.stage_orders.select{|order| order.stage_first}.map{|order| order.fes_date_id}
+    # 申請が片日ot両日埋まっていなければtrue
+    not ( (stage_order_fes_dates.size == 2 and stage_order_fes_dates.uniq.size == 1) \
+      or (stage_order_fes_dates.size == 4 and stage_order_fes_dates.uniq.size == 2) )
+  end
+
+  # ステージ団体で，ステージ利用の詳細が未回答の場合trueを返す
+  def stage_common_option_is_empty?
+    return false if self.group_category_id != 3
+    self.stage_common_option.stage_content == '未回答'
+  end
+
 end
 

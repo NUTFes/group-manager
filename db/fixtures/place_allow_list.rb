@@ -82,8 +82,14 @@ PlaceAllowList.seed( :id,
   { id: 75,  place_id: 15, group_category_id: 6, enable: true }, # 研究室公開
   # 機械・建設棟エリアの追加
   { id: 76,  place_id: 16, group_category_id: 1, enable: true }, # 模擬店(食品販売)
-  { id: 77,  place_id: 16, group_category_id: 2, enable: true}, # 模擬店(物品販売)
+  { id: 77,  place_id: 16, group_category_id: 2, enable: true }, # 模擬店(物品販売)
   { id: 78,  place_id: 16, group_category_id: 4, enable: true }, # 展示
   { id: 79,  place_id: 16, group_category_id: 5, enable: true }, # その他
   { id: 80,  place_id: 16, group_category_id: 6, enable: true }, # 研究室公開
+  # 希望なしの追加
+  { id: 81,  place_id: 25, group_category_id: 1, enable: true },  # 模擬店(食品販売)
+  { id: 82,  place_id: 25, group_category_id: 2, enable: true },  # 模擬店(物品販売)
+  { id: 83,  place_id: 25, group_category_id: 4, enable: false },  # 展示
+  { id: 84,  place_id: 25, group_category_id: 5, enable: false },  # その他
+  { id: 85,  place_id: 25, group_category_id: 6, enable: false },  # 研究室公開
 )

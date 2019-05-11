@@ -23,4 +23,5 @@ Place.seed( :id,
   { id: 22 , name_ja: '機械棟101'     },
   { id: 23 , name_ja: '機械棟103'     },
   { id: 24 , name_ja: '機械棟105'     },
+  { id: 25 , name_ja: '希望なし'      },
 )
