@@ -6,10 +6,10 @@ class PowerOrderCreateValidator < ActiveModel::Validator
     # 保存されている使用電力の合計
     recorded_sum = PowerOrder.where(group_id: record.group_id).sum(:power)
 
-    # ステージ団体は2500W, その他は1000W
-    limit_power = stage?(record.group_id) ? 2500 : 1000
+    # ステージ団体は2500W, その他は1500W
+    limit_power = stage?(record.group_id) ? 2500 : 1500
 
-    # 追加される電力と合計して1000を超えたらエラー
+    # 追加される電力と合計して1500を超えたらエラー
     if (record.power + recorded_sum) > limit_power 
       msg = "団体が使用する電力の合計が#{limit_power}[W]を超えています (#{recorded_sum}[W]が申請済み)．"
       record.errors[:power] << msg
