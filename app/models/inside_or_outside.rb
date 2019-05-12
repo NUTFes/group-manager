@@ -1,0 +1,2 @@
+class InsideOrOutside < ApplicationRecord
+end

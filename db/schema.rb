@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_29_091222) do
+ActiveRecord::Schema.define(version: 2019_05_12_075543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,12 @@ ActiveRecord::Schema.define(version: 2019_04_29_091222) do
     t.index ["fes_year_id"], name: "index_groups_on_fes_year_id"
     t.index ["group_category_id"], name: "index_groups_on_group_category_id"
     t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
+  create_table "inside_or_outsides", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "place_allow_lists", id: :serial, force: :cascade do |t|
