@@ -14,6 +14,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:group_name) %></th>
+      <th><%= model_class.human_attribute_name(:inside_or_outside_id) %></th>
       <th><%= model_class.human_attribute_name(:first) %></th>
       <th><%= model_class.human_attribute_name(:second) %></th>
       <th><%= model_class.human_attribute_name(:third) %></th>
@@ -25,6 +26,7 @@
     <% @place_orders.each do |place_order| %>
       <tr>
         <td><%= place_order.group.name %></td>
+        <td><%= place_order.inside_or_outside_id  ? InsideOrOutside.find(place_order.inside_or_outside_id)  : "未回答" %></td>
         <td><%= place_order.first  ? Place.find(place_order.first)  : "未回答" %></td>
         <td><%= place_order.second ? Place.find(place_order.second) : "未回答" %></td>
         <td><%= place_order.third  ? Place.find(place_order.third)  : "未回答" %></td>
