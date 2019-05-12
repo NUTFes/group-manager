@@ -93,7 +93,7 @@ ja:
           cleanup_end_time: 片付け終了時刻
         place_order:
           group_name: 運営団体の名称
-          inside_or_outside_id: 屋内外
+          inside_or_outside_id: 屋内外の希望
           first: 第一希望
           second: 第二希望
           third: 第三希望
