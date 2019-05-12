@@ -1,4 +1,4 @@
-<% if @is_partition_leg_not_ordered %>
+<% if @is_partition_or_leg_not_ordered or @are_partition_and_leg_not_appropriate%>
   <div class="panel panel-warning">
 <% else %>
   <div class="panel panel-primary">
@@ -14,4 +14,3 @@
             :class => 'btn btn-default' %>
   </div>
 </div>
-

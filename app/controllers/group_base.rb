@@ -16,8 +16,10 @@ class GroupBase < ApplicationController
     @num_nosubrep_groups = @groups.count -
                            Group.where(fes_year: this_year).
                                  get_has_subreps(current_user.id).count
-    # パーテーションの申請があり，パーテーション足が未申請かどうか
-    @is_partition_leg_not_ordered = @groups.any? {|group| group.partition_leg_is_not_ordered?}
+    # パーテーションの申請があり，パーテーション足が未申請の場合，もしくはその逆の場合かどうか
+    @is_partition_or_leg_not_ordered = @groups.any? {|group| group.partition_or_leg_is_not_ordered?}
+    # パーテーションの数とパーテーション足の数の組み合わせが不適切かどうか
+    @are_partition_and_leg_not_appropriate = @groups.any? {|group| group.partition_and_leg_are_not_appropriate?}
     # ステージ団体以外の場合，実施場所の申請が未回答のグループがあるかどうか
     @is_place_order_empty = @groups.any? {|group| group.place_order_is_empty?}
     # ステージ団体の場合，ステージ利用の申請が未回答のグループがあるかどうか
