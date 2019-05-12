@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_12_075543) do
+ActiveRecord::Schema.define(version: 2019_05_12_080635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,7 +190,9 @@ ActiveRecord::Schema.define(version: 2019_05_12_075543) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "remark"
+    t.bigint "inside_or_outside_id"
     t.index ["group_id"], name: "index_place_orders_on_group_id"
+    t.index ["inside_or_outside_id"], name: "index_place_orders_on_inside_or_outside_id"
   end
 
   create_table "places", id: :serial, force: :cascade do |t|
@@ -418,6 +420,7 @@ ActiveRecord::Schema.define(version: 2019_05_12_075543) do
   add_foreign_key "place_allow_lists", "group_categories"
   add_foreign_key "place_allow_lists", "places"
   add_foreign_key "place_orders", "groups"
+  add_foreign_key "place_orders", "inside_or_outsides"
   add_foreign_key "power_orders", "groups"
   add_foreign_key "purchase_lists", "fes_dates"
   add_foreign_key "purchase_lists", "food_products"
