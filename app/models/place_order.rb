@@ -12,6 +12,9 @@ class PlaceOrder < ActiveRecord::Base
   validates :group_id, uniqueness: true
 
   def select_inside_or_outside
+    if inside_or_outside_id == 1
+      errors.add( :inside_or_outside_id, "屋内か屋外かを選択してください．")
+    end
     if Group.find(group_id).group_category_id == 1 && inside_or_outside_id != 3
       errors.add( :inside_or_outside_id, "模擬店(食品販売)の団体は「屋外」を選択してください。")
     end
