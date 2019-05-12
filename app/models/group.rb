@@ -131,6 +131,29 @@ class Group < ActiveRecord::Base
     return Group.joins(:sub_reps).where(user_id: user_id).distinct!
   end
 
+  # パーテーションの申請があるがパーテーション足の申請がない場合，もしくはその逆の場合trueを返す
+  def partition_or_leg_is_not_ordered?
+    partition_order = self.rental_orders.find{|order| order.rental_item_id == 5}  # パーテーションの申請
+    partition_leg_order = self.rental_orders.find{|order| order.rental_item_id == 11}  # パーテーション足の申請
+    return false if partition_order.nil? or partition_leg_order.nil?
+    # パーテーションの申請があるが足の申請がない場合
+    return true if partition_order.num > 0 and partition_leg_order.num == 0
+    # パーテーション足の申請があるがパーテーションの申請がない場合
+    partition_leg_order.num > 0 and partition_order.num == 0
+  end
+
+  # パーテーションとパーテーションの足の組み合わせに適さない場合trueを返す
+  def partition_and_leg_are_not_appropriate?
+    partition_order = self.rental_orders.find{|order| order.rental_item_id == 5}  # パーテーションの申請
+    partition_leg_order = self.rental_orders.find{|order| order.rental_item_id == 11}  # パーテーション足の申請
+    return false if partition_order.nil? or partition_leg_order.nil?
+    return false if partition_order.num == 0 or partition_leg_order.num == 0  # 片方or両方の申請数が0の場合は対象にしない
+    # パーテーション1枚の場合は足は2本しかない
+    return true if partition_order.num == 1 and partition_leg_order.num != 2
+    # パーテーション2枚→足3,4本，3枚→4,5,6本，4枚→5,6,7,8本 ...
+    partition_leg_order.num < partition_order.num + 1 or partition_leg_order.num > partition_order.num * 2
+  end
+
   # ステージ以外の団体で，実施場所の申請が未回答の場合trueを返す
   def place_order_is_empty?
     return false if self.group_category_id == 3

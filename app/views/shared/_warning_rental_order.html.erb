@@ -1,0 +1,14 @@
+<%# パーテーション足が未申請の警告を表示する %>
+<% if @is_partition_or_leg_not_ordered %>
+  <div class="alert alert-dismissible alert-warning">
+    <h4>Warning!</h4>
+    <p>パーテーションもしくはパーテーション足が未申請の団体があります．</p>
+  </div>
+<% end %>
+
+<% if @are_partition_and_leg_not_appropriate %>
+  <div class="alert alert-dismissible alert-warning">
+    <h4>Warning!</h4>
+    <p>パーテーションの数とパーテーション足の数の組み合わせが不適切です．<br>例）パーテーションが2枚の場合はパーテーション足の申請可能数は3本か4本です．</p>
+  </div>
+<% end %>
