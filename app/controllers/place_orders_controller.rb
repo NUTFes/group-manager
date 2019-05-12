@@ -1,5 +1,6 @@
 class PlaceOrdersController < GroupBase
   before_action :set_place_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_area_map_url, only: [:index, :show, :edit, :update]
   load_and_authorize_resource # for cancancan
 
   # GET /place_orders
@@ -74,5 +75,10 @@ class PlaceOrdersController < GroupBase
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_order_params
       params.require(:place_order).permit(:group_id, :first, :second, :third, :remark)
+    end
+
+    # エリアマップの画像URL
+    def set_area_map_url
+      @area_map_url = "https://static.nutfes.net/image/39th/areamap.jpg"
     end
 end
