@@ -17,6 +17,7 @@ ActiveAdmin.register PlaceOrder do
       order.third  ? Place.find(order.third)  : "未回答"
     end
     column :remark
+    actions
   end
 
   csv do
