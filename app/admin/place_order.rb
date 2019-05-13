@@ -4,6 +4,9 @@ ActiveAdmin.register PlaceOrder do
     selectable_column
     id_column
     column :group
+    column :inside_or_outside_id do |order|
+      order.inside_or_outside_id ? InsideOrOutside.find(order.inside_or_outside_id) : "未回答"
+    end
     column :first do  |order|
       order.first  ? Place.find(order.first)  : "未回答"
     end
@@ -14,12 +17,16 @@ ActiveAdmin.register PlaceOrder do
       order.third  ? Place.find(order.third)  : "未回答"
     end
     column :remark
+    actions
   end
 
   csv do
     column :id
     column :group_name do  |order|
       order.group.name
+    end
+    column :inside_or_outside_id do |order|
+      order.inside_or_outside_id ? InsideOrOutside.find(order.inside_or_outside_id) : "未回答"
     end
     column :first do  |order|
       order.first  ? Place.find(order.first)  : "未回答"
@@ -37,6 +44,9 @@ ActiveAdmin.register PlaceOrder do
     attributes_table do
       row :id
       row :group
+      row :inside_or_outside_id do |order|
+        order.inside_or_outside_id ? InsideOrOutside.find(order.inside_or_outside_id) : "未回答"
+      end
       row :first do |order|
         order.first  ? Place.find(order.first)  : "未回答"
       end
@@ -56,6 +66,7 @@ ActiveAdmin.register PlaceOrder do
   filter :fes_year
   filter :group_name, as: :string
   filter :group, label: "運営団体", as: :select, collection: proc {Group.active_admin_collection([1,2,5,4,6])} # 見やすくなるようにGroupを年度順にセパレータ付きで表示
+  filter :inside_or_outside_id, as: :select, collection: InsideOrOutside.all
   filter :first, as: :select, collection: Place.usable_all_places
   filter :second, as: :select, collection: Place.usable_all_places
   filter :third, as: :select, collection: Place.usable_all_places

@@ -11,6 +11,8 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:group_name) %>:</strong></dt>
   <dd><%= @place_order.group.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:inside_or_outside_id) %>:</strong></dt>
+  <dd><%= InsideOrOutside.find(@place_order.inside_or_outside_id) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:first) %>:</strong></dt>
   <dd><%= Place.find(@place_order.first) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:second) %>:</strong></dt>
