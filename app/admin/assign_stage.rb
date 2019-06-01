@@ -34,6 +34,31 @@ ActiveAdmin.register AssignStage do
     actions
   end
 
+  csv do
+    column :id
+    column :stage_order do |as|
+      as.stage_order.group
+    end
+    column :fes_date do |as|
+      FesDate.find(as.stage_order.fes_date_id)
+    end
+    column :is_sunny do |as|
+      as.stage_order.is_sunny ? "晴天時" : "雨天時"
+    end
+    column :order_time_start do |as|
+      as.stage_order.prepare_start_time
+    end
+    column :order_time_end do |as|
+      as.stage_order.cleanup_end_time
+    end
+    column :order_time_interval do |as|
+      as.stage_order.use_time_interval
+    end
+    column :stage
+    column :time_point_start
+    column :time_point_end
+  end
+
   form do |f|
     set_time_point
     order  = f.object.stage_order

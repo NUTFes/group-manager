@@ -19,6 +19,15 @@ ActiveAdmin.register PlaceAllowList do
     actions
   end
 
+  csv do
+    column :id
+    column :group_category_id do |order|
+      order.group_category
+    end
+    column :place
+    column :enable
+  end
+
   form do |f|
     inputs '場所を許可/不許可' do
       if current_user.role_id==1 then

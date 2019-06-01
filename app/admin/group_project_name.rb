@@ -10,6 +10,12 @@ ActiveAdmin.register GroupProjectName do
     actions
   end
 
+  csv do
+    column :id
+    column :group
+    column :project_name
+  end
+
   form do |f|
     year_id = FesYear.where(fes_year: Time.now.year).first.id
 

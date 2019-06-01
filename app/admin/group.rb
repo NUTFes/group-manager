@@ -28,12 +28,13 @@ ActiveAdmin.register Group do
       group.user.user_detail.name_en
     end
     column :name
+    column :project_name do |group|
+      group.group_project_name.try(:project_name)
+    end
     column :group_category do |group|
       group.group_category.name_ja
     end
     column :activity
-    column :created_at
-    column :updated_at
   end
 
   show do

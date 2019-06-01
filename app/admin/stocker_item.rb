@@ -1,5 +1,5 @@
 ActiveAdmin.register StockerItem do
-  permit_params :rental_item_id, :stocker_place_id, :num, :fes_year_id
+  permit_params :rental_item_id, :stocker_place_id, :num
 
   index do
     selectable_column
@@ -8,6 +8,14 @@ ActiveAdmin.register StockerItem do
     column :rental_item
     column :num
     actions
+  end
+
+  csv do
+    column :id
+    column :stocker_place
+    column :rental_item
+    column :num
+
   end
 
   preserve_default_filters!

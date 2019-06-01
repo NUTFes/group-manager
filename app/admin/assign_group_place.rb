@@ -10,6 +10,12 @@ ActiveAdmin.register AssignGroupPlace do
     actions
   end
 
+  csv do
+    column :id
+    column :place_order
+    column :place
+  end
+
   form do |f|
     order  = f.object.place_order
     places = Place.usable_all_places
