@@ -121,7 +121,7 @@ ActiveAdmin.register Group do
   collection_action :download_rental_item_list, :method => :get do
     groups = Group.where({ fes_year_id: FesYear.this_year})
     groups = groups.sort{|g1, g2| g1.group_category_id <=> g2.group_category_id}
-    rental_item_names = RentalItem.all.map{ |item| item.name_ja }
+    rental_item_names = RentalItem.where(is_rentable: true).map{ |item| item.name_ja }
     value_columns = rental_item_names.map{ |_| '数量' }  # 物品数と同じだけ数量カラムを作る
     rental_item_columns = rental_item_names.zip(value_columns).flatten  # 物品名と数量が連続する配列を作る
     csv = CSV.generate do |csv|
