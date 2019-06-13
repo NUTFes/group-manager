@@ -120,8 +120,10 @@ ActiveAdmin.register Group do
   # 参加団体と物品がマトリックスのcsvを作る
   collection_action :download_rental_item_list, :method => :get do
     groups = Group.where({ fes_year_id: FesYear.this_year})
-    groups = groups.sort{|g1, g2| g1.group_category_id <=> g2.group_category_id}
-    rental_item_names = RentalItem.where(is_rentable: true).map{ |item| item.name_ja }
+    groups = groups.sort{|g1, g2| g1.group_category_id <=> g2.group_category_id}  # category_id順にソート
+    rental_item_allow_list_ids = RentalItemAllowList.pluck(:rental_item_id).uniq
+    # RentaiItemの内，is_rentable=trueかつRentalItemAllowListに存在する物品の名前を取得する
+    rental_item_names = RentalItem.where(is_rentable: true).where(id: rental_item_allow_list_ids).pluck(:name_ja)
     value_columns = rental_item_names.map{ |_| '数量' }  # 物品数と同じだけ数量カラムを作る
     rental_item_columns = rental_item_names.zip(value_columns).flatten  # 物品名と数量が連続する配列を作る
     csv = CSV.generate do |csv|
