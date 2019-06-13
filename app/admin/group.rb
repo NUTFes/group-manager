@@ -117,4 +117,26 @@ ActiveAdmin.register Group do
     send_data csv.encode('Shift_JIS', :invalid => :replace, :undef => :replace), type: 'text/csv; charset=shift_jis; header=present', disposition: "attachment; filename=group_list.csv"
   end
 
+  # 参加団体と物品がマトリックスのcsvを作る
+  collection_action :download_rental_item_list, :method => :get do
+    groups = Group.where({ fes_year_id: FesYear.this_year})
+    groups = groups.sort{|g1, g2| g1.group_category_id <=> g2.group_category_id}
+    rental_item_names = RentalItem.all.map{ |item| item.name_ja }
+    value_columns = rental_item_names.map{ |_| '数量' }  # 物品数と同じだけ数量カラムを作る
+    rental_item_columns = rental_item_names.zip(value_columns).flatten  # 物品名と数量が連続する配列を作る
+    csv = CSV.generate do |csv|
+      csv << %w(No. 参加形式 団体名 エリア) + rental_item_columns
+      groups.each_with_index do |group, i|
+        group_name = group.name
+        group_category_name = group.group_category.name_ja
+        place_order = PlaceOrder.where(group_id: group.id).first
+        assign_place_name = place_order ? AssignGroupPlace.where(place_order_id: place_order.id).first.place.name_ja : ''
+        csv << [i+1, group_category_name, group_name, assign_place_name]
+      end
+
+    end
+
+    send_data csv.encode('Shift_JIS', :invalid => :replace, :undef => :replace), type: 'text/csv; charset=shift_jis; header=present', disposition: "attachment; filename=rental_item_list.csv"
+  end
+
 end
