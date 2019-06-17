@@ -143,7 +143,8 @@ ActiveAdmin.register Group do
           elsif assign_stage_first and assign_stage_first.stage.id == 0
             stage_order_second = StageOrder.where(group_id: group.id).third  # 2日目晴の申請
             assign_stage_second = stage_order_second ? AssignStage.where(stage_order_id: stage_order_second.id).first : nil
-            assign_stage_name = assign_stage_second.stage.name_ja + '(2日目晴)'
+            assign_stage_name = assign_stage_second ? assign_stage_second.stage.name_ja : ''
+            assign_stage_name += '(2日目晴)' if assign_stage_second.stage.id != 0  # 未入力の場合は(2日目晴)をつけない
           else
             assign_stage_name = ''
           end
