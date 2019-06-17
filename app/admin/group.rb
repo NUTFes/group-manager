@@ -119,7 +119,7 @@ ActiveAdmin.register Group do
 
   # 参加団体と物品がマトリックスのcsvを作る
   collection_action :download_rental_item_list, :method => :get do
-    groups = Group.where({ fes_year_id: FesYear.this_year})
+    groups = Group.where(fes_year_id: FesYear.this_year)
     groups = groups.sort{|g1, g2| g1.group_category_id <=> g2.group_category_id}  # category_id順にソート
     rental_item_allow_list_ids = RentalItemAllowList.pluck(:rental_item_id).uniq
     # RentaiItemの内，is_rentable=trueかつRentalItemAllowListに存在する物品の名前を取得する
@@ -131,9 +131,17 @@ ActiveAdmin.register Group do
       groups.each_with_index do |group, i|
         group_name = group.name
         group_category_name = group.group_category.name_ja
-        place_order = PlaceOrder.where(group_id: group.id).first
-        assign_place_name = place_order ? AssignGroupPlace.where(place_order_id: place_order.id).first.place.name_ja : ''
-        csv << [i+1, group_category_name, group_name, assign_place_name]
+        if group.group_category_id == 3  # ステージ団体の場合
+          stage_order = StageOrder.where(group_id: group.id).first  # 1日目晴の申請
+          assign_stage = stage_order ? AssignStage.where(stage_order_id: stage_order.id).first : nil
+          assign_stage_name = assign_stage ? assign_stage.stage.name_ja + '(1日目晴)' : ''
+          csv << [i+1, group_category_name, group_name, assign_stage_name]
+        else
+          place_order = PlaceOrder.where(group_id: group.id).first
+          assign_place = place_order ? AssignGroupPlace.where(place_order_id: place_order.id).first : nil
+          assign_place_name = assign_place ? assign_place.place.name_ja : ''
+          csv << [i+1, group_category_name, group_name, assign_place_name]
+        end
       end
 
     end
