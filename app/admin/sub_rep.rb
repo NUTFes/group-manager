@@ -27,6 +27,17 @@ ActiveAdmin.register SubRep do
     actions
   end
 
+  csv do
+    column :id
+    column :group
+    column :name_ja
+    column :name_en
+    column :department
+    column :grade
+    column :tel
+    column :email
+  end
+
   preserve_default_filters!
   filter :fes_year
   filter :group_name, as: :string

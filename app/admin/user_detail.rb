@@ -18,6 +18,19 @@ ActiveAdmin.register UserDetail do
     actions
   end
 
+  csv do
+    column :id
+    column :user
+    column :name_ja
+    column :name_en
+    column :grade
+    column :department
+    column :group do |detail|
+      detail.user.groups.pluck(:name).join(" , ")
+    end
+    column :tel
+  end
+
   form do |f|
     f.inputs "User Details" do
       f.input :user

@@ -23,6 +23,13 @@ ActiveAdmin.register AssignRentalItem do
     actions
   end
 
+  csv do
+    column :id
+    column :rental_order
+    column :rentable_item
+    column :num
+  end
+
   preserve_default_filters!
   filter :fes_year
   filter :group_name, as: :string

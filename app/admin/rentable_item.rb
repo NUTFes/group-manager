@@ -25,6 +25,13 @@ ActiveAdmin.register RentableItem do
     actions
   end
 
+  csv do
+    column :id
+    column :stocker_item
+    column :stocker_place
+    column :max_num
+  end
+
   preserve_default_filters!
   filter :stocker_item_rental_item_id, as: :select, collection: RentalItem.all
   filter :stocker_item_stocker_place_id, as: :select, collection: StockerPlace.all
