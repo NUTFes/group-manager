@@ -52,6 +52,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "物品貸出書類" do
           li link_to("物品貸出票", rental_item_pages_for_pasting_room_sheet_path(format: 'pdf'))
           li link_to("物品持出し表（各団体向け）", group_information_pages_group_information_sheet_path(format: 'pdf'))
+          li link_to('[ダウンロード] 貸出物品表テンプレート', download_rental_item_list_admin_groups_path(format: 'csv'))
         end
       end
     end
