@@ -1,8 +1,8 @@
 users = [{
-     :email=>"admin@nutfes.com",
+     :email=>ENV["GROUP_MANAGER_ADMIN_EMAIL"],
      :role=>Role.find(1),
-     :password=>"nutfes",
-     :password_confirmation=>"nutfes"
+     :password=>ENV["GROUP_MANAGER_ADMIN_PASSWORD"],
+     :password_confirmation=>ENV["GROUP_MANAGER_ADMIN_PASSWORD"]
  }
 ]
 

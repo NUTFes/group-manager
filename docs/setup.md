@@ -86,8 +86,10 @@ production環境の設定を全てやる.
 追加して
 
 ```sh
-# これも`~/.***rc`に書いとくとよい. 自分しか使わないので適当でOK.
+# これも`~/.***rc`に書いとくとよい.
 export GROUP_MANAGER_DATABASE_PASSWORD=<パスワード>
+export GROUP_MANAGER_ADMIN_EMAIL=<管理者用初期アカウントのメールアドレス>
+export GROUP_MANAGER_ADMIN_PASSWORD=<管理者用初期アカウントのパスワード>
 
 # postgresqlのユーザ作成( production環境のDBで必要 )
 createuser -P -d group_manager
