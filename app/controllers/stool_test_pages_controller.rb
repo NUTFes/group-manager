@@ -53,4 +53,17 @@ class StoolTestPagesController < ApplicationController
 
     preview_pdf_page("for_health_center_sheet", "保健所提出用資料")
   end
+
+  def for_health_center_sheet_for_each_group
+    # 検便実施日
+    @date_of_stool_test = GroupManagerCommonOption.first.date_of_stool_test
+    @employees = Employee.cooking_employees(FesYear.this_year.id)
+    group_id_list = @employees.map {|employee| employee.group.id}
+    @groups = Group.where(id: group_id_list)
+    # 学籍番号でユニークな従業員を取得
+    employees_uniq = @employees.sort_by{|e| [e.group.id, e.student_id]}.uniq{|e| e.student_id}
+    # 重複している従業員の内 employees_uniq に存在しない従業員のみ取得
+    @employees_dup = @employees.reject{|e| employees_uniq.any?{|eu| eu.id == e.id}}
+    preview_pdf_page("for_health_center_sheet_for_each_group", "保健所提出用資料(団体別)")
+  end
 end

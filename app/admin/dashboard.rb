@@ -43,6 +43,7 @@ ActiveAdmin.register_page "Dashboard" do
           li link_to("検便回収確認用書類", stool_test_pages_check_sheet_path(format: 'pdf'))
           li link_to("検便業者提出用書類", stool_test_pages_for_examiner_sheet_path(format: 'pdf'))
           li link_to("保険所提出用書類", stool_test_pages_for_health_center_sheet_path(format: 'pdf'))
+          li link_to("保健所提出書類(団体別)", stool_test_pages_for_health_center_sheet_for_each_group_path(format: 'pdf'))
         end
       end
     end
