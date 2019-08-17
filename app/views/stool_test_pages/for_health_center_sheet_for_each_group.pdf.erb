@@ -34,13 +34,15 @@
           <td width="50%">備考</td>
         </tr>
       </thead>
-      <tbody>
-        <% @employees.where(group_id: group.id).each do |employee| %>
-          <td style="font-size : <%= size_calibration(employee.name) %>"><%= employee.name %></td>
-          <td><%= @date_of_stool_test %></td>
-          <td style="font-size : 12px"><%= already_collected(employee) %></td>
-        <% end %>
-      </tbody>
+      <% @employees.where(group_id: group.id).each do |employee| %>
+        <tbody>
+          <tr>
+            <td style="font-size : <%= size_calibration(employee.name) %>"><%= employee.name %></td>
+            <td><%= @date_of_stool_test %></td>
+            <td style="font-size : 12px"><%= already_collected(employee) %></td>
+          </tr>
+        </tbody>
+      <% end %>
     </table>
   </div>
 <% end %>
