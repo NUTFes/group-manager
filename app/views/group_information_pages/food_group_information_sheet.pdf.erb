@@ -3,28 +3,34 @@
     font-family: "IPAGothic";
   }
   table {
-    border-collapse: separate;
+    border-collapse: collapse;
     border-spacing: 0;
     vertical-align: middle;
     width: 100%;
-    font-size: 50px;
+    font-size: 14px;
   }
   th, td {
     text-align: center;
     font-weight: normal;
     vertical-align: middle;
-    border: solid 1px;
+    border: solid 1px silver;
     padding: 0.5em;
   }
   th {
-    border-bottom: solid 2px;
+    border-bottom: solid 1px;
   }
   .page {
     font-family: "IPAexGothic";
-    font-size: 40px;
-    padding-top: 100px;
+    font-size: 10px;
+    padding-top: 30px;
     page-break-after: always;
   }
+    .text {
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: -6px;
+    }
 </style>
 
 <% @groups.each do |group| %>
@@ -34,16 +40,16 @@
     <hr>
     <!--企画名-->
     <% project_name = GroupProjectName.find_by(group_id: group.id) %>
-    <h2 align="center">企画名: <%= project_name.present? ? project_name.project_name : 'なし' %></h2>
+    <p class="text">企画名: <%= project_name.present? ? project_name.project_name : 'なし' %></p>
     <!--場所-->
     <% assign_group_place = AssignGroupPlace.find_by_group(group.id).first %>
-    <h2 align="center">場所: <%= assign_group_place.present? ? assign_group_place.place : 'なし' %></h2>
+    <p class="text">場所: <%= assign_group_place.present? ? assign_group_place.place : 'なし' %></p>
     <!--代表者-->
     <% user_detail = UserDetail.find_by(user: group.user) %>
-    <h2 align="center">代表者: <%= user_detail.name_ja %> / <%= group.user.email %> / <%= user_detail.tel %></h2>
+    <p class="text">代表者: <%= user_detail.name_ja %> / <%= group.user.email %> / <%= user_detail.tel %></p>
     <!--副代表-->
     <% sub_rep = SubRep.find_by(group: group) %>
-    <h2 align="center">副代表: <%= sub_rep.name_ja %> / <%= sub_rep.email %> / <%= sub_rep.tel %></h2>
+    <p class="text">副代表: <%= sub_rep.name_ja %> / <%= sub_rep.email %> / <%= sub_rep.tel %></p>
     <br>
 
     <!--従業員-->
@@ -89,9 +95,9 @@
     <% power_orders = PowerOrder.where(group: group) %>
     <table align="center">
       <tr>
-        <td width="30%">名称</td>
-        <td>メーカー / 型番</td>
-        <td width="15%">電力[W]</td>
+        <th width="30%">名称</th>
+        <th>メーカー / 型番</th>
+        <th width="15%">電力[W]</th>
       </tr>
       <% power_orders.each do |power_order| %>
         <tr>
