@@ -30,4 +30,10 @@ class GroupInformationPagesController < ApplicationController
 
     preview_pdf_page('group_information_sheet', "物品持出し表（各団体向け）")
   end
+
+  def food_group_information_sheet
+    @groups = Group.year(FesYear.this_year).where(group_category_id: 1)
+    preview_pdf_page('food_group_information_sheet', '参加団体情報(食販)')
+  end
+
 end

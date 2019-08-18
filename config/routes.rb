@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'rental_item_pages/for_pasting_room_sheet'
 
   get 'group_information_pages/group_information_sheet'
+  get 'group_information_pages/food_group_information_sheet'
 
   resources :group_project_names
   resources :stage_common_options
