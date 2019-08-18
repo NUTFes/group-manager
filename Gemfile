@@ -93,7 +93,7 @@ gem 'listen'
 # 多言語化のためのGem
 gem 'rails-i18n'
 
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '0.12.3'
 
 # puma
 gem 'puma'
