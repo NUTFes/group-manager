@@ -1,0 +1,48 @@
+<style type='text/css'>
+   body {
+       font-family: "IPAGothic"
+   }
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+    width: 100%;
+    table-layout: fixed; 
+  }
+  caption, th, td {
+    text-align: center;
+    font-weight: normal;
+    vertical-align: middle;
+    border: solid 1px;
+    padding: 0.5em;
+  }
+  .pagebreak{
+    page-break-after: always;
+  }
+</style>
+
+<% @groups.each do |group| %>
+  <div class='pagebreak'>
+    <h2 align="center">
+      検便_保健所提出書類 団体: <%= group.name %>
+    </h2>
+    <table align="center">
+      <thead>
+        <tr>
+          <td width="30%">氏名</td>
+          <td width="20%">検便実施日</td>
+          <td width="50%">備考</td>
+        </tr>
+      </thead>
+      <% @employees.where(group_id: group.id).each do |employee| %>
+        <tbody>
+          <tr>
+            <td style="font-size : <%= size_calibration(employee.name) %>"><%= employee.name %></td>
+            <td><%= @date_of_stool_test %></td>
+            <td style="font-size : 12px"><%= already_collected(employee) %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+<% end %>

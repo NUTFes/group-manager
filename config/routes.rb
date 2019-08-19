@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'stool_test_pages/check_sheet'
   get 'stool_test_pages/for_examiner_sheet'
   get 'stool_test_pages/for_health_center_sheet'
+  get 'stool_test_pages/for_health_center_sheet_for_each_group'
   get 'rental_item_pages/for_pasting_room_sheet'
 
   get 'group_information_pages/group_information_sheet'
