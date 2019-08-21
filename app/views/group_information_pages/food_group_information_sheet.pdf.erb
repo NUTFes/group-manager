@@ -1,0 +1,135 @@
+<style type='text/css'>
+  body {
+    font-family: "IPAGothic";
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: center;
+    font-weight: normal;
+    vertical-align: middle;
+    border: solid 1px silver;
+    padding: 0.5em;
+  }
+  th {
+    border-bottom: solid 1px;
+  }
+  .page {
+    font-family: "IPAexGothic";
+    font-size: 10px;
+    padding-top: 30px;
+    page-break-after: always;
+  }
+    .text {
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: -6px;
+    }
+</style>
+
+<% @groups.each do |group| %>
+  <div class="page">
+    <!--参加団体名-->
+    <h1 align="center"><%= group.name %></h1>
+    <hr>
+    <!--企画名-->
+    <% project_name = GroupProjectName.find_by(group_id: group.id) %>
+    <p class="text">企画名: <%= project_name.present? ? project_name.project_name : 'なし' %></p>
+    <!--場所-->
+    <% assign_group_place = AssignGroupPlace.find_by_group(group.id).first %>
+    <p class="text">場所: <%= assign_group_place.present? ? assign_group_place.place : 'なし' %></p>
+    <!--代表者-->
+    <% user_detail = UserDetail.find_by(user: group.user) %>
+    <p class="text">代表者: <%= user_detail.name_ja %> / <%= group.user.email %> / <%= user_detail.tel %></p>
+    <!--副代表-->
+    <% sub_rep = SubRep.find_by(group: group) %>
+    <p class="text">副代表: <%= sub_rep.name_ja %> / <%= sub_rep.email %> / <%= sub_rep.tel %></p>
+    <br>
+
+    <!--従業員-->
+    <h2 align="center">従業員</h2>
+    <% employees = Employee.where(group: group) %>
+    <table align="center">
+      <tr>
+      <% employees.each_with_index do |employee, i| %>
+        <% if i % 3 == 0 %>
+          </tr>
+          <tr>
+        <% end %>
+        <td width="33%"><%= employee.name %></td>
+      <% end %>
+      </tr>
+    </table>
+    <br>
+
+    <!--貸出物品-->
+    <h2 align="center">貸出物品</h2>
+    <% rental_orders = RentalOrder.where(group: group) %>
+    <table align="center">
+      <tr>
+        <th width="30%">名称</th>
+        <th>借用場所</th>
+        <th width="15%">個数</th>
+      </tr>
+      <% rental_orders.each do |rental_order| %>
+        <% assign_rentai_item = AssignRentalItem.find_by(rental_order: rental_order) %>
+        <% if assign_rentai_item.present? and assign_rentai_item.num > 0 %>
+          <tr>
+            <td><%= assign_rentai_item.rentable_item.stocker_item.rental_item.name_ja %></td>
+            <td><%= assign_rentai_item.rentable_item.stocker_place.name %></td>
+            <td><%= assign_rentai_item.num %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <br>
+
+    <!--使用電力-->
+    <h2 align="center">使用電力</h2>
+    <% power_orders = PowerOrder.where(group: group) %>
+    <table align="center">
+      <tr>
+        <th width="30%">名称</th>
+        <th>メーカー / 型番</th>
+        <th width="15%">電力[W]</th>
+      </tr>
+      <% power_orders.each do |power_order| %>
+        <tr>
+          <td><%= power_order.item %></td>
+          <td><%= power_order.manufacturer %> / <%= power_order.model %></td>
+          <td><%= power_order.power %></td>
+        </tr>
+      <% end %>
+    </table>
+    <br>
+
+    <!--販売食品-->
+    <h2 align="center">販売食品</h2>
+    <% food_products = FoodProduct.where(group: group) %>
+    <table align="center">
+      <tr>
+        <th width="30%">名称</th>
+        <th width="20%">1日目の個数</th>
+        <th width="20%">2日目の個数</th>
+        <th width="30%">調理の有無</th>
+      </tr>
+      <% food_products.each do |food_product| %>
+        <tr>
+          <td><%= food_product.name %></td>
+          <td><%= food_product.first_day_num %></td>
+          <td><%= food_product.second_day_num  %></td>
+          <td><%= food_product.is_cooking ? '調理あり' : '調理なし(提供のみ)' %></td>
+        </tr>
+      <% end %>
+    </table>
+    <br>
+
+
+  </div>
+<% end %>
