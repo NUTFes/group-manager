@@ -78,7 +78,7 @@
         <th width="15%">個数</th>
       </tr>
       <% rental_orders.each do |rental_order| %>
-        <% assign_rentai_item = AssignRentalItem.find_by(rental_order: rental_order) %>
+        <% assign_rentai_item = AssignRentalItem.where(rental_order: rental_order).first %>
         <% if assign_rentai_item.present? and assign_rentai_item.num > 0 %>
           <tr>
             <td><%= assign_rentai_item.rentable_item.stocker_item.rental_item.name_ja %></td>
