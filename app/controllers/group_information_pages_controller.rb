@@ -36,4 +36,9 @@ class GroupInformationPagesController < ApplicationController
     preview_pdf_page('food_group_information_sheet', '参加団体情報(食販)')
   end
 
+  def not_food_group_information_sheet
+    @groups = Group.year(FesYear.this_year).where.not(group_category_id: 1).order(:group_category_id)
+    preview_pdf_page('not_food_group_information_sheet', '参加団体情報(食販以外)')
+  end
+
 end

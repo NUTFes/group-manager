@@ -70,6 +70,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "当日資料" do
           li link_to("参加団体情報(食販)", group_information_pages_food_group_information_sheet_path(format: 'pdf'))
+          li link_to("参加団体情報(食販以外)", group_information_pages_not_food_group_information_sheet_path(format: 'pdf'))
         end
       end
     end
