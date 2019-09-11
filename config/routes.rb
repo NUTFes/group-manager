@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get 'group_information_pages/group_information_sheet'
   get 'group_information_pages/food_group_information_sheet'
+  get 'group_information_pages/not_food_group_information_sheet'
 
   resources :group_project_names
   resources :stage_common_options
