@@ -203,7 +203,7 @@ bundle exec rails s -e production
 - pumaが起動しているかの確認: `ps aux|grep puma`
 - pumaの停止: `bundle exec pumactl -P tmp/pids/puma.pid halt`
 - pumaの再起動: `bundle exec pumactl -P tmp/pids/puma.pid restart`
--nginxの設定ファイル: `/etc/nginx/sites-available/group-manager.nutfes.net`
+- nginxの設定ファイル: `/etc/nginx/sites-available/group-manager.nutfes.net`
 - 公開URL: https://group-manager.nutfes.net
 
 ## デプロイの仕方
